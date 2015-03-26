@@ -21,4 +21,20 @@ public class School {
 	public void setAwards(String awards) {
 		this.awards = awards;
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public double getGPA() {
+		return minGPA;
+	}
+	
+	public int getDistance() {
+		return distance;
+	}
+	
+	public String getAwards() {
+		return awards;
+	}
 }
