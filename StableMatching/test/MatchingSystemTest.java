@@ -10,6 +10,7 @@ public class MatchingSystemTest {
 	public void TestViewSchools() {
 		//school s that exists in a list of schools will show up when viewSchools() is run
 		//school x that doesn't exist in a list of schools will not show up when viewSchools is run
+		throws new RuntimeException();
 	}
 	
 	@Test
@@ -20,6 +21,7 @@ public class MatchingSystemTest {
 		if another student B only has a GPA of 3.0, no award, and is a distance 40mi and
 		if another school T that requires a minimum of 2.0 GPA, requires no awards and is also a distance of 10mi
 		*/
+		throws new RuntimeException();
 	
 	}
 }

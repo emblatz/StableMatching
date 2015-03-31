@@ -10,5 +10,7 @@ public class SimilarityTest {
 		
 		//test when they should match, that they do match
 		//test when they shouldn't match, that they don't match
+		
+		throws new RuntimeException();
 	}
 }
