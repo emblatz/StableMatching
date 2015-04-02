@@ -16,7 +16,7 @@ public class MatchingSystemTest {
 	}
 	
 	@Test
-	public void TestRunMatch(List<School> schools, List<Student> students) {
+	public void TestRunMatch(/*List<School> schools, List<Student> students*/) {
 		//for a school and a student who match according to Stable Matching algorithm, runMatch should pair them and display this pair
 		/*this will mean that a student A with a GPA of 3.5, Honors Award, and a distance of 10mi from the school S
 		will be matched with school S requiring a minimum of 3.5 GPA, Honors Award, and a distance of 30mi 
