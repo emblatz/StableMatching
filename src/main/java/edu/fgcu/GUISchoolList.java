@@ -29,21 +29,38 @@ import javax.swing.Action;
 public class GUISchoolList extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnBack;
+	private JList<Student> list;
 	private JFrame error;
-	private SchoolList schoolList = new SchoolList();
 
 	/**
 	 * Create the frame.
 	 */
-	public GUISchoolList() {
+	public GUISchoolList(SchoolList schoolList, final GUISchool guiSchool) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+		//contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		//view a list of schools added
+		btnBack = new JButton("Back to Add School");
+		contentPane.add(btnBack, BorderLayout.NORTH);
+		
+		btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt,guiSchool);
+            }
+        });
+	}
+	
+	private void backButtonActionPerformed(ActionEvent evt, GUISchool guiSchool) {
+		
+		guiSchool.show();
+		this.hide();
 		
 	}
+	
+	//view a list of students added
+	//System.out.println(studentList.getList().get(0).getName() + " on list");
 }

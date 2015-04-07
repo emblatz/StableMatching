@@ -44,7 +44,7 @@ public class GUISchool extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
-		
+				
 		JLabel lblEnterSchoolInformation = new JLabel("Enter School Information:");
 		lblEnterSchoolInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnterSchoolInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -84,6 +84,7 @@ public class GUISchool extends JFrame {
 		JButton btnEnter = new JButton("Enter Information");
 		contentPane.add(btnEnter);
 		
+		
 		btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterButtonActionPerformed(evt);
@@ -110,7 +111,7 @@ public class GUISchool extends JFrame {
     	}
     	
     	//new GUI for list of schools
-    	new GUISchoolList().setVisible(true);
+    	new GUISchoolList(schoolList,this).setVisible(true);
     	this.dispose();
     }
 }

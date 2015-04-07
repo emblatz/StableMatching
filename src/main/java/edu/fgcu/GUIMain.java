@@ -1,6 +1,7 @@
 package edu.fgcu;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
 
 
 public class GUIMain extends JFrame {
@@ -47,13 +49,17 @@ public class GUIMain extends JFrame {
 		setContentPane(contentPane);
 		
 		JLabel lblChooseOne = new JLabel("Choose One:");
+		lblChooseOne.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChooseOne.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblChooseOne, BorderLayout.NORTH);
 		
 		rdbtnSchool = new JRadioButton("School");
-		contentPane.add(rdbtnSchool, BorderLayout.CENTER);
+		rdbtnSchool.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(rdbtnSchool, BorderLayout.WEST);
 		
 		rdbtnStudent = new JRadioButton("Student");
-		contentPane.add(rdbtnStudent, BorderLayout.WEST);
+		rdbtnStudent.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		contentPane.add(rdbtnStudent, BorderLayout.EAST);
 		
 		JButton btnEnter = new JButton("Enter");
 		contentPane.add(btnEnter, BorderLayout.SOUTH);
@@ -73,12 +79,16 @@ public class GUIMain extends JFrame {
     			    JOptionPane.ERROR_MESSAGE);
     	}
     	else if (rdbtnStudent.isSelected() == true){
-    		new GUIStudent().setVisible(true);
-    		this.dispose();
+    		GUIStudent guiStudent = new GUIStudent();
+    		guiStudent.setVisible(true);
+    		//new GUIStudent().setVisible(true);
+    		this.hide();
     	}
     	else if (rdbtnSchool.isSelected() == true) {
-    		new GUISchool().setVisible(true);
-    		this.dispose();
+    		GUISchool guiSchool = new GUISchool();
+    		guiSchool.setVisible(true);
+    		//new GUISchool().setVisible(true);
+    		this.hide();
     	}
     	else {
     		JOptionPane.showMessageDialog(error,

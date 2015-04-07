@@ -104,8 +104,8 @@ public class GUIStudent extends JFrame {
     	}
 		
 		//new GUI for list of students
-		new GUIStudentList().setVisible(true);
-		this.dispose();
+		new GUIStudentList(studentList, this).setVisible(true);
+		this.hide();
 		
     }
 }
