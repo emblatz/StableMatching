@@ -94,6 +94,7 @@ public class GUIStudent extends JFrame {
     		student.setAwards(textAward.getText());
     		
     		studentList.add(student);
+    		System.out.println(student.getName() + " added to school list");
     	}
     	catch(NullPointerException e) {
     		JOptionPane.showMessageDialog(error,
@@ -101,5 +102,10 @@ public class GUIStudent extends JFrame {
     			    "Entry error",
     			    JOptionPane.ERROR_MESSAGE);
     	}
+		
+		//new GUI for list of students
+		new GUIStudentList().setVisible(true);
+		this.dispose();
+		
     }
 }

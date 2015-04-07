@@ -74,9 +74,11 @@ public class GUIMain extends JFrame {
     	}
     	else if (rdbtnStudent.isSelected() == true){
     		new GUIStudent().setVisible(true);
+    		this.dispose();
     	}
     	else if (rdbtnSchool.isSelected() == true) {
     		new GUISchool().setVisible(true);
+    		this.dispose();
     	}
     	else {
     		JOptionPane.showMessageDialog(error,
