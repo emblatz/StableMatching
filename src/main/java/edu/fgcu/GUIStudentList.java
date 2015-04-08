@@ -30,7 +30,7 @@ public class GUIStudentList extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnBack;
-	private JList<Student> list;
+	private JList jlist;
 	private JFrame error;
 
 	/**
@@ -41,11 +41,27 @@ public class GUIStudentList extends JFrame {
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
-		//contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		btnBack = new JButton("Back to Add Student");
-		contentPane.add(btnBack, BorderLayout.NORTH);
+		contentPane.add(btnBack);
+		
+		
+		//view a list of students added
+		String listDataNames[] = new String[studentList.getList().size()];
+		Student listData[] = new Student[studentList.getList().size()];
+		
+		for(int i=0; i<listData.length; i++){
+			listDataNames[i] = studentList.getList().get(i).getName();
+			listData[i] = studentList.getList().get(i);
+		}
+		
+		jlist = new JList(listDataNames);
+		jlist.setBorder(new EmptyBorder(5,5,5,5));
+		contentPane.add(jlist);
+		
+		
 		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +77,4 @@ public class GUIStudentList extends JFrame {
 		
 	}
 	
-	//view a list of students added
-	//System.out.println(studentList.getList().get(0).getName() + " on list");
 }

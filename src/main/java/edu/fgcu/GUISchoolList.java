@@ -2,6 +2,7 @@ package edu.fgcu;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -30,7 +31,7 @@ public class GUISchoolList extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnBack;
-	private JList<Student> list;
+	private JList jlist;
 	private JFrame error;
 
 	/**
@@ -41,11 +42,27 @@ public class GUISchoolList extends JFrame {
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
-		//contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		btnBack = new JButton("Back to Add School");
-		contentPane.add(btnBack, BorderLayout.NORTH);
+		contentPane.add(btnBack);
+		
+		
+		//view a list of schools added
+		String listDataNames[] = new String[schoolList.getList().size()];
+		School listData[] = new School[schoolList.getList().size()];
+		
+		for(int i=0; i<listData.length; i++){
+			listDataNames[i] = schoolList.getList().get(i).getName();
+			listData[i] = schoolList.getList().get(i);
+		}
+		
+		jlist = new JList(listDataNames);
+		jlist.setBorder(new EmptyBorder(5,5,5,5));
+		contentPane.add(jlist);
+		
+		
 		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +78,5 @@ public class GUISchoolList extends JFrame {
 		
 	}
 	
-	//view a list of students added
-	//System.out.println(studentList.getList().get(0).getName() + " on list");
+	
 }
