@@ -5,6 +5,7 @@ import java.util.*;
 public class Matching {
 	private List<School> schools;
 	private List<Student> students;
+	private HashMap matched = new HashMap();
 	
 	public void viewSchools() {
 		//school s that exists in a list of schools will show up when viewSchools() is run
@@ -18,5 +19,43 @@ public class Matching {
 		if another student B only has a GPA of 3.0, no award, and is a distance 40mi and
 		if another school T that requires a minimum of 2.0 GPA, requires no awards and is also a distance of 10mi
 		*/
+		while (!students.isEmpty()) {
+			for (Student student:students) {
+				for (School school:schools) {
+					if (!matched.containsKey(school)) {
+						matched.put(school, student);
+					}
+					else {
+						int newCount = 0;
+						int oldCount = 0;
+						Student oldStudent = (Student) matched.get(school);
+						if (school.getDistance()==student.getDistance()) {
+							newCount++;
+						}
+						if (school.getAwards()==student.getAwards()) {
+							newCount++;
+						}
+						if (school.getGPA()==student.getGPA()) {
+							newCount++;
+						}
+						if (school.getDistance()==oldStudent.getDistance()) {
+							oldCount++;
+						}
+						if (school.getAwards()==oldStudent.getAwards()) {
+							oldCount++;
+						}
+						if (school.getGPA()==oldStudent.getGPA()) {
+							oldCount++;
+						}
+						if (oldCount < newCount) {
+							matched.remove(school);
+							matched.put(school, student);
+							students.remove(student);
+							students.add(oldStudent);
+						}
+					}
+				}
+			}
+		}
 	}
 }
