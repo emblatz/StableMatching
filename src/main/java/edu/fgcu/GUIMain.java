@@ -79,15 +79,13 @@ public class GUIMain extends JFrame {
     			    JOptionPane.ERROR_MESSAGE);
     	}
     	else if (rdbtnStudent.isSelected() == true){
-    		GUIStudent guiStudent = new GUIStudent();
+    		GUIStudent guiStudent = new GUIStudent(this);
     		guiStudent.setVisible(true);
-    		//new GUIStudent().setVisible(true);
     		this.hide();
     	}
     	else if (rdbtnSchool.isSelected() == true) {
-    		GUISchool guiSchool = new GUISchool();
+    		GUISchool guiSchool = new GUISchool(this);
     		guiSchool.setVisible(true);
-    		//new GUISchool().setVisible(true);
     		this.hide();
     	}
     	else {

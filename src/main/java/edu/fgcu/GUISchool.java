@@ -37,21 +37,27 @@ public class GUISchool extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUISchool() {
+	public GUISchool(final GUIMain guiMain) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
-				
+		
+		JButton btnBack = new JButton("Back");
+		contentPane.add(btnBack, BorderLayout.CENTER);
+		
+		JLabel label = new JLabel("");
+		contentPane.add(label);	//fill a space
+						
 		JLabel lblEnterSchoolInformation = new JLabel("Enter School Information:");
 		lblEnterSchoolInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnterSchoolInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblEnterSchoolInformation);
-		
-		JLabel label = new JLabel("");
-		contentPane.add(label);
+			
+		JLabel label2 = new JLabel("");
+		contentPane.add(label2); //fill a space
 		
 		JLabel lblSchoolName = new JLabel("School Name:");
 		contentPane.add(lblSchoolName);
@@ -90,6 +96,13 @@ public class GUISchool extends JFrame {
                 enterButtonActionPerformed(evt);
             }
         });
+		
+		
+		btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt, guiMain);
+            }
+        });
 	}
 
 	private void enterButtonActionPerformed(ActionEvent evt) {
@@ -114,4 +127,11 @@ public class GUISchool extends JFrame {
     	new GUISchoolList(schoolList,this).setVisible(true);
     	this.dispose();
     }
+	
+	private void backButtonActionPerformed(ActionEvent evt, GUIMain guiMain) {
+		
+		guiMain.show();
+		this.hide();
+		
+	}
 }
