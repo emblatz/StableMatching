@@ -10,6 +10,12 @@ public class Matching {
 	public void viewSchools() {
 		//school s that exists in a list of schools will show up when viewSchools() is run
 		//school x that doesn't exist in a list of schools will not show up when viewSchools is run
+		for (School school:schools) {
+			System.out.println("School name: "+school.getName());
+			System.out.println("Preferred minimum GPA: "+school.getGPA());
+			System.out.println("Preferred living distance: "+school.getDistance());
+			System.out.println("Preferred award: "+school.getAwards()+"\n");
+		}
 	}
 	
 	public void runMatch(List<School> schools, List<Student> students) {
@@ -24,27 +30,28 @@ public class Matching {
 				for (School school:schools) {
 					if (!matched.containsKey(school)) {
 						matched.put(school, student);
+						break;
 					}
 					else {
 						int newCount = 0;
 						int oldCount = 0;
 						Student oldStudent = (Student) matched.get(school);
-						if (school.getDistance()==student.getDistance()) {
+						if (school.getDistance()>=student.getDistance()) {
 							newCount++;
 						}
 						if (school.getAwards()==student.getAwards()) {
 							newCount++;
 						}
-						if (school.getGPA()==student.getGPA()) {
+						if (school.getGPA()<=student.getGPA() && student.getGPA() > oldStudent.getGPA()) {
 							newCount++;
 						}
-						if (school.getDistance()==oldStudent.getDistance()) {
+						if (school.getDistance()>=oldStudent.getDistance()) {
 							oldCount++;
 						}
 						if (school.getAwards()==oldStudent.getAwards()) {
 							oldCount++;
 						}
-						if (school.getGPA()==oldStudent.getGPA()) {
+						if (school.getGPA()<=oldStudent.getGPA() && student.getGPA() <= oldStudent.getGPA()) {
 							oldCount++;
 						}
 						if (oldCount < newCount) {
@@ -52,10 +59,15 @@ public class Matching {
 							matched.put(school, student);
 							students.remove(student);
 							students.add(oldStudent);
+							break;
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	public HashMap getMap() {
+		return matched;
 	}
 }
