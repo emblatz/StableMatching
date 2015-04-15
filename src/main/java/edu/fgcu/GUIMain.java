@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -71,6 +72,11 @@ public class GUIMain extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 4));
 		setContentPane(contentPane);
 		
+		/*format of columns:
+		 * column 1 & 2 is school information - label, text box
+		 * column 3 & 4 is student information - label, text box
+		 */
+		
 		//column 1
 		JLabel lblEnterSchoolInformation = new JLabel("Enter School Information:");
 		lblEnterSchoolInformation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -101,8 +107,8 @@ public class GUIMain extends JFrame {
 		schoolTextName.setColumns(10);
 		
 		//column 3
-		JLabel lblNewLabel = new JLabel("Student Name:");
-		contentPane.add(lblNewLabel);
+		JLabel lblStudentLabel = new JLabel("Student Name:");
+		contentPane.add(lblStudentLabel);
 		
 		//column 4
 		studentTextName = new JTextField();
@@ -169,56 +175,117 @@ public class GUIMain extends JFrame {
 		studentAward.addItem("Other");
 		contentPane.add(studentAward);
 		
-		/*
-		JLabel lblChooseOne = new JLabel("Choose One:");
-		lblChooseOne.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChooseOne.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(lblChooseOne, BorderLayout.NORTH);
-						
-		rdbtnSchool = new JRadioButton("School");
-		rdbtnSchool.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(rdbtnSchool, BorderLayout.WEST);
+		//column 1
+		JButton btnEnterSchool = new JButton("Enter School Information");
+		contentPane.add(btnEnterSchool);
 		
-		rdbtnStudent = new JRadioButton("Student");
-		rdbtnStudent.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		contentPane.add(rdbtnStudent, BorderLayout.EAST);
 		
-		accountButtons = new ButtonGroup();
-		accountButtons.add(rdbtnSchool);
-		accountButtons.add(rdbtnStudent);
-		
-		JButton btnEnter = new JButton("Enter");
-		contentPane.add(btnEnter, BorderLayout.SOUTH);
-		
-		btnEnter.addActionListener(new java.awt.event.ActionListener() {
+		btnEnterSchool.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonActionPerformed(evt);
+                enterButtonSchoolActionPerformed(evt);
             }
         });
+		
+		//column 2
+		JLabel label3 = new JLabel("");
+		contentPane.add(label3); //fill a space
+		
+		//column 3
+		JButton btnEnterStudent = new JButton("Enter Student Information");
+		contentPane.add(btnEnterStudent);
+		
+		btnEnterStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterButtonStudentActionPerformed(evt);
+            }
+        });
+		
+		//column 4
+		
 	}
+		
+		
+		
+		
+		
+	//button actions
 	
-	private void enterButtonActionPerformed(ActionEvent evt) {
-    	if (rdbtnSchool.isSelected() == true && rdbtnStudent.isSelected() == true) {
-    		JOptionPane.showMessageDialog(error,
-    			    "Only one option must be selected.",
-    			    "Selection error",
-    			    JOptionPane.ERROR_MESSAGE);
-    	}
-    	else if (rdbtnStudent.isSelected() == true){
-    		GUIStudent guiStudent = new GUIStudent(this);
-    		guiStudent.setVisible(true);
-    		this.hide();
-    	}
-    	else if (rdbtnSchool.isSelected() == true) {
-    		GUISchool guiSchool = new GUISchool(this);
-    		guiSchool.setVisible(true);
-    		this.hide();
-    	}
-    	else {
-    		JOptionPane.showMessageDialog(error,
-    			    "One option must be selected.",
-    			    "Selection error",
-    			    JOptionPane.ERROR_MESSAGE);
-    	}*/
-    }
+		private void enterButtonSchoolActionPerformed(ActionEvent evt) {
+	    	try {
+	    		
+	    		School school = new School();
+	    		school.setName(schoolTextName.getText());
+	    		school.setGPA(Double.parseDouble(schoolTextGPA.getText()));
+	    		school.setDistance(Integer.parseInt(schoolTextDistance.getText()));
+	    		school.setAwards(schoolAward.getItemAt(schoolAward.getSelectedIndex()).toString());
+	    		
+	    		schoolList.add(school);
+	    		
+	    		System.out.println(school.getName() + " added to school list");
+	    		
+	    	}
+	    	catch(IndexOutOfBoundsException i){
+	    		if(Double.parseDouble(schoolTextGPA.getText())>4 | Double.parseDouble(schoolTextGPA.getText())<0|
+	    			Integer.parseInt(schoolTextDistance.getText())>100 | Integer.parseInt(schoolTextDistance.getText())<0){
+				JOptionPane.showMessageDialog(error,
+	    			    "One or more numbers are out of range",
+	    			    "Entry error",
+	    			    JOptionPane.ERROR_MESSAGE);
+	    		}
+			}
+			
+			catch(RuntimeException r){
+				if(schoolTextGPA.getText().isEmpty() | schoolTextDistance.getText().isEmpty() | schoolTextName.getText().isEmpty()){
+				JOptionPane.showMessageDialog(error,
+	    			    "One or more entries are blank",
+	    			    "Entry error",
+	    			    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+	    	
+	    	
+	    }
+		
+		private void enterButtonStudentActionPerformed(ActionEvent evt) {
+			try {
+				
+	    		Student student = new Student();
+	    		student.setName(studentTextName.getText());
+	    		student.setGPA(Double.parseDouble(studentTextGPA.getText()));
+	    		student.setDistance(Integer.parseInt(studentTextDistance.getText()));
+	    		student.setAwards(studentAward.getItemAt(studentAward.getSelectedIndex()).toString());
+	    		    		
+	    		studentList.add(student);
+	    		
+	    		System.out.println(student.getName() + " added to school list");
+
+	    		
+	    	}
+			catch(IndexOutOfBoundsException i){
+				if(Double.parseDouble(studentTextGPA.getText())>4 | Double.parseDouble(studentTextGPA.getText())<0|
+		    			Integer.parseInt(studentTextDistance.getText())>100 | Integer.parseInt(studentTextDistance.getText())<0){
+				JOptionPane.showMessageDialog(error,
+	    			    "One or more numbers are out of range",
+	    			    "Entry error",
+	    			    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+			catch(RuntimeException r){
+				if(studentTextGPA.getText().isEmpty() | studentTextDistance.getText().isEmpty() | studentTextName.getText().isEmpty()){
+				JOptionPane.showMessageDialog(error,
+	    			    "One or more entries are blank",
+	    			    "Entry error",
+	    			    JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+	    	
+			
+			
+			
+	    }
+		
+
+    
 }
