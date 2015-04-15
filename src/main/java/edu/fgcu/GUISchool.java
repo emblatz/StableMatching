@@ -3,6 +3,7 @@ package edu.fgcu;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,7 +31,7 @@ public class GUISchool extends JFrame {
 	private JTextField textName;
 	private JTextField textGPA;
 	private JTextField textDistance;
-	private JTextField textAward;
+	private JComboBox textAward;
 	private JFrame error;
 	private SchoolList schoolList = new SchoolList();
 
@@ -66,26 +67,29 @@ public class GUISchool extends JFrame {
 		contentPane.add(textName);
 		textName.setColumns(10);
 		
-		JLabel lblMinGPA = new JLabel("Minimum GPA:");
+		JLabel lblMinGPA = new JLabel("Minimum GPA Requirement (0-4):");
 		contentPane.add(lblMinGPA);
 		
 		textGPA = new JTextField();
 		contentPane.add(textGPA);
 		textGPA.setColumns(10);
 		
-		JLabel lblMaxDistance = new JLabel("Maximum Distance:");
+		JLabel lblMaxDistance = new JLabel("Maximum Distance in miles (0-100):");
 		contentPane.add(lblMaxDistance);
 		
 		textDistance = new JTextField();
 		contentPane.add(textDistance);
 		textDistance.setColumns(10);
 		
-		JLabel lblAward = new JLabel("Preferred Award:");
+		JLabel lblAward = new JLabel("Select Your Preferred Award:");
 		contentPane.add(lblAward);
 		
-		textAward = new JTextField();
+		textAward = new JComboBox();
+		textAward.addItem("None");
+		textAward.addItem("Scholarship");
+		textAward.addItem("Honors Award");
+		textAward.addItem("Other");
 		contentPane.add(textAward);
-		textAward.setColumns(10);
 		
 		JButton btnEnter = new JButton("Enter Information");
 		contentPane.add(btnEnter);
@@ -111,21 +115,31 @@ public class GUISchool extends JFrame {
     		school.setName(textName.getText());
     		school.setGPA(Double.parseDouble(textGPA.getText()));
     		school.setDistance(Integer.parseInt(textDistance.getText()));
-    		school.setAwards(textAward.getText());
+    		school.setAwards(textAward.getItemAt(textAward.getSelectedIndex()).toString());
     		
     		schoolList.add(school);
+    		
     		System.out.println(school.getName() + " added to school list");
+    		
+    		//new GUI for list of schools
+        	new GUISchoolList(schoolList,this).setVisible(true);
+        	this.hide();
     	}
-    	catch(NullPointerException e) {
-    		JOptionPane.showMessageDialog(error,
-    			    "One or more entries is empty",
+    	catch(IndexOutOfBoundsException i){
+			JOptionPane.showMessageDialog(error,
+    			    "One or more numbers are out of range",
     			    "Entry error",
     			    JOptionPane.ERROR_MESSAGE);
-    	}
+		}
+		
+		catch(RuntimeException r){
+			JOptionPane.showMessageDialog(error,
+    			    "One or more entries are blank",
+    			    "Entry error",
+    			    JOptionPane.ERROR_MESSAGE);
+		}
     	
-    	//new GUI for list of schools
-    	new GUISchoolList(schoolList,this).setVisible(true);
-    	this.dispose();
+    	
     }
 	
 	private void backButtonActionPerformed(ActionEvent evt, GUIMain guiMain) {

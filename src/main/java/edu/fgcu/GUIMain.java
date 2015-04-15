@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
@@ -17,6 +18,7 @@ import javax.swing.SwingConstants;
 public class GUIMain extends JFrame {
 
 	private JPanel contentPane;
+	private ButtonGroup accountButtons;
 	private JRadioButton rdbtnSchool;
 	private JRadioButton rdbtnStudent;
 	private JFrame error;
@@ -52,7 +54,7 @@ public class GUIMain extends JFrame {
 		lblChooseOne.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChooseOne.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblChooseOne, BorderLayout.NORTH);
-		
+						
 		rdbtnSchool = new JRadioButton("School");
 		rdbtnSchool.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(rdbtnSchool, BorderLayout.WEST);
@@ -60,6 +62,10 @@ public class GUIMain extends JFrame {
 		rdbtnStudent = new JRadioButton("Student");
 		rdbtnStudent.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(rdbtnStudent, BorderLayout.EAST);
+		
+		accountButtons = new ButtonGroup();
+		accountButtons.add(rdbtnSchool);
+		accountButtons.add(rdbtnStudent);
 		
 		JButton btnEnter = new JButton("Enter");
 		contentPane.add(btnEnter, BorderLayout.SOUTH);

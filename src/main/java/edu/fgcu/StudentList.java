@@ -9,6 +9,7 @@ public class StudentList {
 	
 	public void add(Student student) {
 		studentList.add(student);
+
 	}
 	
 	public List<Student> getList() {

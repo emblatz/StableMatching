@@ -7,15 +7,25 @@ public class Student {
 	private String awards;
 	
 	public void setName(String name){
-		this.name = name;
+		if(!name.isEmpty())
+			this.name = name;
+		else
+			throw new RuntimeException();
+		
 	}
 	
 	public void setGPA(double gpa) {
-		this.gpa = gpa;
+		if(gpa >= 0 && gpa <= 4)
+			this.gpa = gpa;
+		else
+			throw new IndexOutOfBoundsException();
 	}
 	
 	public void setDistance(int distance) {
-		this.distance = distance;
+		if(distance >= 0 && distance <= 100)
+			this.distance = distance;
+		else
+			throw new IndexOutOfBoundsException();
 	}
 	
 	public void setAwards(String awards) {
