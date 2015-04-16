@@ -3,11 +3,10 @@ package edu.fgcu;
 import java.util.*;
 
 public class Matching {
-	private List<School> schools;
-	private List<Student> students;
+	
 	private HashMap matched = new HashMap();
 	
-	public void viewSchools() {
+	public void viewSchools(List<School> schools) {
 		//school s that exists in a list of schools will show up when viewSchools() is run
 		//school x that doesn't exist in a list of schools will not show up when viewSchools is run
 		for (School school:schools) {
