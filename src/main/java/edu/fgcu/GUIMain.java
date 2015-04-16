@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -208,6 +209,27 @@ public class GUIMain extends JFrame {
         });
 		
 		
+		//empty row
+		JLabel label5 = new JLabel("");
+		contentPane.add(label5); //fill a space
+		JLabel label6 = new JLabel("");
+		contentPane.add(label6); //fill a space
+		JLabel label7 = new JLabel("");
+		contentPane.add(label7); //fill a space
+		JLabel label8 = new JLabel("");
+		contentPane.add(label8); //fill a space
+		
+		//column 1
+		JButton btnMatch = new JButton("Match");
+		contentPane.add(btnMatch);
+		
+		btnMatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matchButtonActionPerformed(evt, schoolList, studentList);
+            }
+        });
+		
+		//column 2
 		
 				
 		
@@ -301,11 +323,15 @@ public class GUIMain extends JFrame {
 				}
 			}
 			
-	    	
-			
-			
 			
 	    }
+		
+		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
+			
+			Matching match = new Matching();
+			match.runMatch(schoolList.getList(), studentList.getList());
+		
+		}
 		
 
     

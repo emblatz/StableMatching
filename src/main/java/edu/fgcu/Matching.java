@@ -7,6 +7,7 @@ public class Matching {
 	private List<Student> students;
 	private HashMap matched = new HashMap();
 	
+	
 	public void viewSchools() {
 		//school s that exists in a list of schools will show up when viewSchools() is run
 		//school x that doesn't exist in a list of schools will not show up when viewSchools is run
@@ -71,7 +72,7 @@ public class Matching {
 					}
 				}
 			}
-		}
+		}	
 	}
 	
 	public HashMap getMap() {
