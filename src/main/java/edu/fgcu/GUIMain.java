@@ -180,8 +180,14 @@ public class GUIMain extends JFrame {
 		contentPane.add(studentAward);
 				
 		//column 1
-		JLabel label3 = new JLabel("");
-		contentPane.add(label3); //fill a space
+		JButton btnViewSchools = new JButton("View Schools");
+		contentPane.add(btnViewSchools);
+		
+		btnViewSchools.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSchoolsButtonActionPerformed(evt, schoolList);
+            }
+        });
 		
 		//column 2
 		JButton btnEnterSchool = new JButton("Enter School Information");
@@ -195,8 +201,14 @@ public class GUIMain extends JFrame {
         });
 		
 		//column 3
-		JLabel label4 = new JLabel("");
-		contentPane.add(label4); //fill a space
+		JButton btnViewStudents = new JButton("View Students");
+		contentPane.add(btnViewStudents);
+		
+		btnViewStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStudentsButtonActionPerformed(evt, studentList);
+            }
+        });
 		
 		//column 4
 		JButton btnEnterStudent = new JButton("Enter Student Information");
@@ -209,15 +221,17 @@ public class GUIMain extends JFrame {
         });
 		
 		
+		
 		//empty row
+		JLabel label3 = new JLabel("");
+		contentPane.add(label3); //fill a space
+		JLabel label4 = new JLabel("");
+		contentPane.add(label4); //fill a space
 		JLabel label5 = new JLabel("");
 		contentPane.add(label5); //fill a space
 		JLabel label6 = new JLabel("");
 		contentPane.add(label6); //fill a space
-		JLabel label7 = new JLabel("");
-		contentPane.add(label7); //fill a space
-		JLabel label8 = new JLabel("");
-		contentPane.add(label8); //fill a space
+		
 		
 		//column 1
 		JButton btnMatch = new JButton("Match");
@@ -228,9 +242,6 @@ public class GUIMain extends JFrame {
                 matchButtonActionPerformed(evt, schoolList, studentList);
             }
         });
-		
-		//column 2
-		
 				
 		
 	}
@@ -330,7 +341,21 @@ public class GUIMain extends JFrame {
 			
 			Matching match = new Matching();
 			match.runMatch(schoolList.getList(), studentList.getList());
+					
+		}
 		
+		private void viewSchoolsButtonActionPerformed(ActionEvent evt, SchoolList schoolList){
+			
+			Matching match = new Matching();
+			match.viewSchools(schoolList.getList());
+					
+		}
+		
+		private void viewStudentsButtonActionPerformed(ActionEvent evt, StudentList studentList){
+			
+			Matching match = new Matching();
+			match.viewStudents(studentList.getList());
+					
 		}
 		
 

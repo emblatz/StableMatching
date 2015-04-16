@@ -17,6 +17,17 @@ public class Matching {
 		}
 	}
 	
+	public void viewStudents(List <Student> students) {
+		//student s that exists in a list of students will show up when viewStudents() is run
+		//student x that doesn't exist in a list of students will not show up when viewStudents is run
+		for (Student student:students) {
+			System.out.println("Student name: "+student.getName());
+			System.out.println("Student GPA: "+student.getGPA());
+			System.out.println("Preferred living distance: "+student.getDistance());
+			System.out.println("Student award: "+student.getAwards()+"\n");
+		}
+	}
+	
 	public void runMatch(List<School> schools, List<Student> students) {
 		//for a school and a student who match according to Stable Matching algorithm, runMatch should pair them and display this pair
 		/*this will mean that a student A with a GPA of 3.5, Honors Award, and a distance of 10mi from the school S
