@@ -116,7 +116,7 @@ public class GUIStudent extends JFrame {
     		System.out.println(student.getName() + " added to school list");
 
     		//new GUI for list of students
-    		new GUIStudentList(studentList, this).setVisible(true);
+    		//new GUIStudentList(studentList, this).setVisible(true);
     		this.hide();
     		
     	}

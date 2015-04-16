@@ -122,8 +122,9 @@ public class GUISchool extends JFrame {
     		System.out.println(school.getName() + " added to school list");
     		
     		//new GUI for list of schools
-        	new GUISchoolList(schoolList,this).setVisible(true);
-        	this.hide();
+    		//new GUISchoolList(schoolList, this).setVisible(true);
+    		this.hide();
+	    	
     	}
     	catch(IndexOutOfBoundsException i){
 			JOptionPane.showMessageDialog(error,

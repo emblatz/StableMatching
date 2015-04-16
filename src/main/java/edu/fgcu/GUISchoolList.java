@@ -37,7 +37,7 @@ public class GUISchoolList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUISchoolList(SchoolList schoolList, final GUISchool guiSchool) {
+	public GUISchoolList(SchoolList schoolList, final GUIMain guiMain) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
@@ -45,7 +45,7 @@ public class GUISchoolList extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
 		
-		btnBack = new JButton("Back to Add School");
+		btnBack = new JButton("Back to Main");
 		contentPane.add(btnBack);
 		
 		
@@ -66,14 +66,14 @@ public class GUISchoolList extends JFrame {
 		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt,guiSchool);
+                backButtonActionPerformed(evt, guiMain);
             }
         });
 	}
 	
-	private void backButtonActionPerformed(ActionEvent evt, GUISchool guiSchool) {
+	private void backButtonActionPerformed(ActionEvent evt, GUIMain guiMain) {
 		
-		guiSchool.show();
+		guiMain.show();
 		this.hide();
 		
 	}

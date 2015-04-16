@@ -30,7 +30,6 @@ public class GUIMain extends JFrame {
 	private JRadioButton rdbtnStudent;
 	private JFrame error;
 	
-	private SchoolList schoolList;
 	private JList jlistSchools;
 	private StudentList studentList;
 	private JList jlistStudents;
@@ -71,6 +70,10 @@ public class GUIMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(0, 4));
 		setContentPane(contentPane);
+		
+		
+		final SchoolList schoolList = new SchoolList();
+		final StudentList studentList = new StudentList();
 		
 		/*format of columns:
 		 * column 1 & 2 is school information - label, text box
@@ -174,33 +177,39 @@ public class GUIMain extends JFrame {
 		studentAward.addItem("Honors Award");
 		studentAward.addItem("Other");
 		contentPane.add(studentAward);
-		
+				
 		//column 1
+		JLabel label3 = new JLabel("");
+		contentPane.add(label3); //fill a space
+		
+		//column 2
 		JButton btnEnterSchool = new JButton("Enter School Information");
 		contentPane.add(btnEnterSchool);
 		
 		
 		btnEnterSchool.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonSchoolActionPerformed(evt);
+                enterButtonSchoolActionPerformed(evt, schoolList);
             }
         });
 		
-		//column 2
-		JLabel label3 = new JLabel("");
-		contentPane.add(label3); //fill a space
-		
 		//column 3
+		JLabel label4 = new JLabel("");
+		contentPane.add(label4); //fill a space
+		
+		//column 4
 		JButton btnEnterStudent = new JButton("Enter Student Information");
 		contentPane.add(btnEnterStudent);
 		
 		btnEnterStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonStudentActionPerformed(evt);
+                enterButtonStudentActionPerformed(evt, studentList);
             }
         });
 		
-		//column 4
+		
+		
+				
 		
 	}
 		
@@ -210,7 +219,7 @@ public class GUIMain extends JFrame {
 		
 	//button actions
 	
-		private void enterButtonSchoolActionPerformed(ActionEvent evt) {
+		private void enterButtonSchoolActionPerformed(ActionEvent evt, SchoolList schoolList) {
 	    	try {
 	    		
 	    		School school = new School();
@@ -218,13 +227,19 @@ public class GUIMain extends JFrame {
 	    		school.setGPA(Double.parseDouble(schoolTextGPA.getText()));
 	    		school.setDistance(Integer.parseInt(schoolTextDistance.getText()));
 	    		school.setAwards(schoolAward.getItemAt(schoolAward.getSelectedIndex()).toString());
-	    		
+
 	    		schoolList.add(school);
 	    		
-	    		System.out.println(school.getName() + " added to school list");
+	    		//new GUI for list of schools
+	    		new GUISchoolList(schoolList, this).setVisible(true);
+	    		schoolTextName.setText(null);
+	    		schoolTextGPA.setText(null);
+	    		schoolTextDistance.setText(null);
+	    		this.hide();
+		    	
 	    		
 	    	}
-	    	catch(IndexOutOfBoundsException i){
+	    	catch(IndexOutOfBoundsException i){ //checks for invalid numbers
 	    		if(Double.parseDouble(schoolTextGPA.getText())>4 | Double.parseDouble(schoolTextGPA.getText())<0|
 	    			Integer.parseInt(schoolTextDistance.getText())>100 | Integer.parseInt(schoolTextDistance.getText())<0){
 				JOptionPane.showMessageDialog(error,
@@ -234,7 +249,7 @@ public class GUIMain extends JFrame {
 	    		}
 			}
 			
-			catch(RuntimeException r){
+			catch(RuntimeException r){ //checks for blank text boxes
 				if(schoolTextGPA.getText().isEmpty() | schoolTextDistance.getText().isEmpty() | schoolTextName.getText().isEmpty()){
 				JOptionPane.showMessageDialog(error,
 	    			    "One or more entries are blank",
@@ -246,7 +261,7 @@ public class GUIMain extends JFrame {
 	    	
 	    }
 		
-		private void enterButtonStudentActionPerformed(ActionEvent evt) {
+		private void enterButtonStudentActionPerformed(ActionEvent evt, StudentList studentList) {
 			try {
 				
 	    		Student student = new Student();
@@ -256,12 +271,18 @@ public class GUIMain extends JFrame {
 	    		student.setAwards(studentAward.getItemAt(studentAward.getSelectedIndex()).toString());
 	    		    		
 	    		studentList.add(student);
+
+	    		//new GUI for list of students
+	    		new GUIStudentList(studentList, this).setVisible(true);
+	    		studentTextName.setText(null);
+	    		studentTextGPA.setText(null);
+	    		studentTextDistance.setText(null);
+	    		this.hide();
 	    		
-	    		System.out.println(student.getName() + " added to school list");
 
 	    		
 	    	}
-			catch(IndexOutOfBoundsException i){
+			catch(IndexOutOfBoundsException i){ //checks for invalid numbers
 				if(Double.parseDouble(studentTextGPA.getText())>4 | Double.parseDouble(studentTextGPA.getText())<0|
 		    			Integer.parseInt(studentTextDistance.getText())>100 | Integer.parseInt(studentTextDistance.getText())<0){
 				JOptionPane.showMessageDialog(error,
@@ -271,7 +292,7 @@ public class GUIMain extends JFrame {
 				}
 			}
 			
-			catch(RuntimeException r){
+			catch(RuntimeException r){ //checks for blank text boxes
 				if(studentTextGPA.getText().isEmpty() | studentTextDistance.getText().isEmpty() | studentTextName.getText().isEmpty()){
 				JOptionPane.showMessageDialog(error,
 	    			    "One or more entries are blank",
