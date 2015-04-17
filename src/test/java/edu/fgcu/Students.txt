@@ -1,0 +1,99 @@
+Bob Jones
+2.5
+40
+None
+
+John Doe
+3.5
+60
+Science Award
+
+Emma Watson
+4.0
+100
+Book Award
+
+Jane Smith
+3.0
+30
+Leadership Award
+
+Taylor Swift
+3.5
+50
+Fine Arts Award
+
+Todd Miller
+2.0
+70
+None
+
+Bill Gates
+3.5
+50
+Science Award
+
+Christy Meyer
+4.0
+90
+Fine Arts Award
+
+Madeline Dean
+4.0
+30
+Science Award
+
+Sonya Cortez
+3.0
+20
+Leadership Award
+
+Alex Jacobs
+2.5
+80
+None
+
+Calvin Walker
+2.0
+50
+Science Award
+
+Irene Lopez
+3.5
+60
+Leadership Award
+
+Caleb Wade
+2.5
+30
+Science Award
+
+Mike Griffin
+3.0
+60
+None
+
+Kenny French
+4.0
+80
+Fine Arts Award
+
+Anne Peterson
+4.0
+70
+Book Award
+
+Leon May
+4.0
+40
+Book Award
+
+Brooke Hale
+2.5
+30
+None
+
+Tracy Morton
+3.0
+40
+None
