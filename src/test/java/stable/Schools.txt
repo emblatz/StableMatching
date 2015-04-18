@@ -1,0 +1,99 @@
+Florida Gulf Coast University
+2.5
+50
+Scholarship
+
+University of Central Florida
+2.0
+100
+None
+
+MIT
+3.5
+80
+Honors Award
+
+Harvard
+4.0
+100
+Honors Award
+
+Vassar College
+3.0
+20
+Other
+
+Edison Community College
+1.0
+100
+None
+
+Florida State University
+2.5
+50
+None
+
+Brown University
+3.5
+90
+Honors Award
+
+Duchess Community College
+1.0
+70
+None
+
+New York University
+3.0
+100
+Scholarship
+
+Rochester Institute of Technology
+3.5
+50
+Other
+
+Yale
+4.0
+100
+Honors Award
+
+Columbia University
+4.0
+80
+Scholarship
+
+Cornell University
+3.7
+50
+Honors Award
+
+Carnegie Mellon University
+3.8
+40
+Honors Award
+
+SUNYIT
+2.0
+60
+Other
+
+SUNY Purchase
+2.0
+60
+Other
+
+University of California, Los Angeles
+3.0
+70
+None
+
+San Diego State University
+2.0
+50
+None
+
+Florida Institute of Technology
+2.5
+40
+None
