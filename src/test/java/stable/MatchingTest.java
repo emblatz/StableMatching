@@ -1,7 +1,6 @@
 package stable;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 import java.util.*;
 
@@ -94,19 +93,18 @@ public class MatchingTest {
 	
 	@Test
 	public void testViewSchool(){
-		String name = "School University";
-		double gpa = 1.5;
-		int distance = 100;
-		String awards = "None";
-		School school = new School(name, gpa, distance, awards);
+		List <School> schools;
 		SchoolList schoolList = new SchoolList();
-		schoolList.add(school);
+		School school1 = new School("School One", 1.0, 40, "None");
+		School school2 = new School("School Two", 2.0, 100, "Scholarship");
+		schoolList.add(school1);
+		schoolList.add(school2);
+		schools = schoolList.getList();
 		
-		assertTrue(schoolList.getList().contains(school));
-		assertEquals(schoolList.getList().get(0).getName(), name);
-		assertEquals(schoolList.getList().get(0).getGPA(), gpa, 0);
-		assertEquals(schoolList.getList().get(0).getDistance(), distance);
-		assertEquals(schoolList.getList().get(0).getAwards(), awards);
+		for (School school:schools){
+			assertTrue(schools.contains(school));
+		}
+		
 	}
 	
 	@Test
@@ -118,6 +116,7 @@ public class MatchingTest {
 		Student student = new Student(name, gpa, distance, awards);
 		StudentList studentList = new StudentList();
 		studentList.add(student);
+		
 		
 		assertTrue(studentList.getList().contains(student));
 		assertEquals(studentList.getList().get(0).getName(), name);
