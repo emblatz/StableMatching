@@ -83,6 +83,11 @@ public class GUIMain extends JFrame {
 		lblEnterSchoolInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblEnterSchoolInformation);
 			
+		schoolTextName = new JTextField();
+		schoolTextGPA = new JTextField();
+		schoolTextDistance = new JTextField();
+		schoolAward = new JComboBox();
+			
 		//column 2
 		JLabel label1 = new JLabel("");
 		contentPane.add(label1); //fill a space
@@ -91,6 +96,11 @@ public class GUIMain extends JFrame {
 		JLabel lblEnterStudentInformation = new JLabel("Enter Student Information:");
 		lblEnterStudentInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblEnterStudentInformation);
+
+		studentTextName = new JTextField();
+		studentTextGPA = new JTextField();
+		studentTextDistance = new JTextField();
+		studentAward = new JComboBox();
 		
 		//column 4
 		JLabel label2 = new JLabel("");
@@ -102,7 +112,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblSchoolName);
 		
 		//column 2
-		schoolTextName = new JTextField();
+		schoolTextName.setNextFocusableComponent(schoolTextGPA);
 		contentPane.add(schoolTextName);
 		schoolTextName.setColumns(10);
 		
@@ -111,7 +121,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblStudentLabel);
 		
 		//column 4
-		studentTextName = new JTextField();
+		studentTextName.setNextFocusableComponent(studentTextGPA);
 		contentPane.add(studentTextName);
 		studentTextName.setColumns(10);
 		
@@ -120,7 +130,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblMinGPA);
 		
 		//column 2
-		schoolTextGPA = new JTextField();
+		schoolTextGPA.setNextFocusableComponent(schoolTextDistance);
 		contentPane.add(schoolTextGPA);
 		schoolTextGPA.setColumns(10);
 		
@@ -129,7 +139,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblStudentGPA);
 		
 		//column 4
-		studentTextGPA = new JTextField();
+		studentTextGPA.setNextFocusableComponent(studentTextDistance);
 		contentPane.add(studentTextGPA);
 		studentTextGPA.setColumns(10);
 		
@@ -138,7 +148,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblMaxDistance);
 		
 		//column 2
-		schoolTextDistance = new JTextField();
+		schoolTextDistance.setNextFocusableComponent(schoolAward);
 		contentPane.add(schoolTextDistance);
 		schoolTextDistance.setColumns(10);
 		
@@ -147,7 +157,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblLocation);
 		
 		//column 4
-		studentTextDistance = new JTextField();
+		studentTextDistance.setNextFocusableComponent(studentAward);
 		contentPane.add(studentTextDistance);
 		studentTextDistance.setColumns(10);
 		
@@ -156,7 +166,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblSchoolAward);
 		
 		//column 2
-		schoolAward = new JComboBox();
+		schoolAward.setNextFocusableComponent(studentTextName);
 		schoolAward.addItem("None");
 		schoolAward.addItem("Scholarship");
 		schoolAward.addItem("Honors Award");
@@ -168,7 +178,6 @@ public class GUIMain extends JFrame {
 		contentPane.add(lblStudentAward);
 		
 		//column 4
-		studentAward = new JComboBox();
 		studentAward.addItem("None");
 		studentAward.addItem("Scholarship");
 		studentAward.addItem("Honors Award");
