@@ -36,7 +36,7 @@ public class SchoolTest {
 	@Test
 	public void testSetAwards() {
 		School school = new School();
-		school.setAwards("President's Gold Award");
-		assertEquals(school.getAwards(), "President's Gold Award");
+		school.setAwards("Scholarship");
+		assertEquals(school.getAwards(), "Scholarship");
 	}
 }

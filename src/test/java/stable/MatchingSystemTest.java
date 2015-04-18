@@ -24,14 +24,14 @@ public class MatchingSystemTest {
 		school.setName("Florida Gulf Coast University");
 		school.setGPA(2.5);
 		school.setDistance(100);
-		school.setAwards("President's Gold Award");
+		school.setAwards("Scholarship");
 		schools.add(school);
 		
 		Student student = new Student();
 		student.setName("Bob Jones");
 		student.setGPA(4.0);
 		student.setDistance(100);
-		student.setAwards("President's Gold Award");
+		student.setAwards("Scholarship");
 		students.add(student);
 		
 		matching.runMatch(schools, students);
@@ -60,28 +60,28 @@ public class MatchingSystemTest {
 		school.setName("Florida Gulf Coast University");
 		school.setGPA(2.5);
 		school.setDistance(100);
-		school.setAwards("President's Gold Award");
+		school.setAwards("Scholarship");
 		schools.add(school);
 		
 		Student student = new Student();
 		student.setName("John Smith");
 		student.setGPA(3.5);
 		student.setDistance(50);
-		student.setAwards("Excellence Award");
+		student.setAwards("Honors Award");
 		students.add(student);
 		
 		Student student2 = new Student();
 		student2.setName("Bob Jones");
 		student2.setGPA(4.0);
 		student2.setDistance(100);
-		student2.setAwards("President's Gold Award");
+		student2.setAwards("Scholarship");
 		students.add(student2);
 		
 		School school2 = new School();
 		school2.setName("MIT");
 		school2.setGPA(3.5);
 		school2.setDistance(50);
-		school2.setAwards("Excellence Award");
+		school2.setAwards("Honors Award");
 		schools.add(school2);
 		
 		matching.runMatch(schools, students);

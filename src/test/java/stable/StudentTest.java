@@ -34,7 +34,7 @@ public class StudentTest {
 	@Test
 	public void testSetAwards() {
 		Student student = new Student();
-		student.setAwards("Cool Scholarship Thing");
-		assertEquals(student.getAwards(), "Cool Scholarship Thing");
+		student.setAwards("Scholarship");
+		assertEquals(student.getAwards(), "Scholarship");
 	}
 }
