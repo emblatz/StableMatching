@@ -1,7 +1,7 @@
 Florida Gulf Coast University
 2.5
 50
-Leadership Award
+Scholarship
 
 University of Central Florida
 2.0
@@ -11,17 +11,17 @@ None
 MIT
 3.5
 80
-Science Award
+Honors Award
 
 Harvard
 4.0
 100
-Book Award
+Honors Award
 
 Vassar College
 3.0
 20
-Book Award
+Other
 
 Edison Community College
 1.0
@@ -36,7 +36,7 @@ None
 Brown University
 3.5
 90
-Leadership Award
+Honors Award
 
 Duchess Community College
 1.0
@@ -46,42 +46,42 @@ None
 New York University
 3.0
 100
-Leadership Award
+Scholarship
 
 Rochester Institute of Technology
 3.5
 50
-Science Award
+Other
 
 Yale
 4.0
 100
-Fine Arts Award
+Honors Award
 
 Columbia University
 4.0
 80
-Fine Arts Award
+Scholarship
 
 Cornell University
 3.7
 50
-Book Award
+Honors Award
 
 Carnegie Mellon University
 3.8
 40
-Science Award
+Honors Award
 
 SUNYIT
 2.0
 60
-Science Award
+Other
 
 SUNY Purchase
 2.0
 60
-Fine Arts Award
+Other
 
 University of California, Los Angeles
 3.0
@@ -96,4 +96,4 @@ None
 Florida Institute of Technology
 2.5
 40
-Science Award
+None

@@ -31,10 +31,6 @@ public class GUIMain extends JFrame {
 	private JRadioButton rdbtnStudent;
 	private JFrame error;
 	
-	private JList jlistSchools;
-	private StudentList studentList;
-	private JList jlistStudents;
-	
 	private JTextField schoolTextName;
 	private JTextField schoolTextGPA;
 	private JTextField schoolTextDistance;
@@ -288,6 +284,14 @@ public class GUIMain extends JFrame {
 	    			    "One or more entries are blank",
 	    			    "Entry error",
 	    			    JOptionPane.ERROR_MESSAGE);
+				
+				}
+				else{
+					JOptionPane.showMessageDialog(error,
+		    			    "Not a number",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+					
 				}
 			}
 	    	
@@ -331,6 +335,13 @@ public class GUIMain extends JFrame {
 	    			    "One or more entries are blank",
 	    			    "Entry error",
 	    			    JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					JOptionPane.showMessageDialog(error,
+		    			    "Not a number",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+					
 				}
 			}
 			

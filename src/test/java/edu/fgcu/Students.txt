@@ -6,22 +6,22 @@ None
 John Doe
 3.5
 60
-Science Award
+Scholarship
 
 Emma Watson
 4.0
 100
-Book Award
+Honors Award
 
 Jane Smith
 3.0
 30
-Leadership Award
+Honors Award
 
 Taylor Swift
 3.5
 50
-Fine Arts Award
+Other
 
 Todd Miller
 2.0
@@ -31,22 +31,22 @@ None
 Bill Gates
 3.5
 50
-Science Award
+Other
 
 Christy Meyer
 4.0
 90
-Fine Arts Award
+Other
 
 Madeline Dean
 4.0
 30
-Science Award
+Honors Award
 
 Sonya Cortez
 3.0
 20
-Leadership Award
+Honors Award
 
 Alex Jacobs
 2.5
@@ -56,17 +56,17 @@ None
 Calvin Walker
 2.0
 50
-Science Award
+None
 
 Irene Lopez
 3.5
 60
-Leadership Award
+Honors Award
 
 Caleb Wade
 2.5
 30
-Science Award
+Honors Award
 
 Mike Griffin
 3.0
@@ -76,17 +76,17 @@ None
 Kenny French
 4.0
 80
-Fine Arts Award
+Scholarship
 
 Anne Peterson
 4.0
 70
-Book Award
+Honors Award
 
 Leon May
 4.0
 40
-Book Award
+Honors Award
 
 Brooke Hale
 2.5
