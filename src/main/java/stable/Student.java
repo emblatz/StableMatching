@@ -6,6 +6,17 @@ public class Student {
 	private int distance;
 	private String awards;
 	
+	public Student(){
+		
+	}
+	
+	public Student(String name, double gpa, int distance, String awards){
+		this.setName(name);
+		this.setGPA(gpa);
+		this.setDistance(distance);
+		this.setAwards(awards);
+	}
+	
 	public void setName(String name){
 		if(!name.isEmpty())
 			this.name = name;

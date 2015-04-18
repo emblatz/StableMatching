@@ -7,6 +7,16 @@ public class School {
 	private int distance;
 	private String awards;
 	
+	public School(){
+		
+	}
+	
+	public School(String name, double gpa, int distance, String awards){
+		this.setName(name);
+		this.setGPA(gpa);
+		this.setDistance(distance);
+		this.setAwards(awards);
+	}
 	
 	public void setName(String name){
 		if(!name.isEmpty())

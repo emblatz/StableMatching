@@ -1,6 +1,7 @@
 package stable;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ import stable.Matching;
 import stable.School;
 import stable.Student;
 
-public class MatchingSystemTest {
+public class MatchingTest {
 	
 	// Tests to see if one student and one school are automatically matched together.
 	@Test
@@ -89,5 +90,39 @@ public class MatchingSystemTest {
 		
 		assertEquals(expected.get(school), student2);
 		assertEquals(expected.get(school2), student);
+	}
+	
+	@Test
+	public void testViewSchool(){
+		String name = "School University";
+		double gpa = 1.5;
+		int distance = 100;
+		String awards = "None";
+		School school = new School(name, gpa, distance, awards);
+		SchoolList schoolList = new SchoolList();
+		schoolList.add(school);
+		
+		assertTrue(schoolList.getList().contains(school));
+		assertEquals(schoolList.getList().get(0).getName(), name);
+		assertEquals(schoolList.getList().get(0).getGPA(), gpa, 0);
+		assertEquals(schoolList.getList().get(0).getDistance(), distance);
+		assertEquals(schoolList.getList().get(0).getAwards(), awards);
+	}
+	
+	@Test
+	public void testViewStudent(){
+		String name = "Jane Doe";
+		double gpa = 4.0;
+		int distance = 50;
+		String awards = "Scholarship";
+		Student student = new Student(name, gpa, distance, awards);
+		StudentList studentList = new StudentList();
+		studentList.add(student);
+		
+		assertTrue(studentList.getList().contains(student));
+		assertEquals(studentList.getList().get(0).getName(), name);
+		assertEquals(studentList.getList().get(0).getGPA(), gpa, 0);
+		assertEquals(studentList.getList().get(0).getDistance(), distance);
+		assertEquals(studentList.getList().get(0).getAwards(), awards);
 	}
 }
