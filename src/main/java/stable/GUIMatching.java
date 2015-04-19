@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.html.ListView;
 import javax.swing.JLabel;
@@ -23,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.Action;
 
@@ -48,10 +50,12 @@ public class GUIMatching extends JFrame {
 		btnBack = new JButton("Back to Main");
 		contentPane.add(btnBack);
 		
+		Matching match = new Matching();
+		ArrayList<String> matches = match.runMatch(schoolList.getList(), studentList.getList());
 		
 		
-		
-		
+		JList list = new JList(matches.toArray());
+		contentPane.add(list);
 		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

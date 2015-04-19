@@ -354,8 +354,7 @@ public class GUIMain extends JFrame {
 		
 		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
 			
-			//Matching match = new Matching();
-			//match.runMatch(schoolList.getList(), studentList.getList());
+			
 			new GUIMatching(schoolList, studentList, this).setVisible(true);	
 			this.hide();
 		}
