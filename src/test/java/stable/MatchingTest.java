@@ -10,6 +10,7 @@ import stable.Matching;
 import stable.School;
 import stable.Student;
 
+
 public class MatchingTest {
 	
 	// Tests to see if one student and one school are automatically matched together.
@@ -91,37 +92,18 @@ public class MatchingTest {
 		assertEquals(expected.get(school2), student);
 	}
 	
+	
+	
+	/*
 	@Test
 	public void testViewSchool(){
-		List <School> schools;
-		SchoolList schoolList = new SchoolList();
-		School school1 = new School("School One", 1.0, 40, "None");
-		School school2 = new School("School Two", 2.0, 100, "Scholarship");
-		schoolList.add(school1);
-		schoolList.add(school2);
-		schools = schoolList.getList();
-		
-		for (School school:schools){
-			assertTrue(schools.contains(school));
-		}
+	
 		
 	}
 	
 	@Test
 	public void testViewStudent(){
-		String name = "Jane Doe";
-		double gpa = 4.0;
-		int distance = 50;
-		String awards = "Scholarship";
-		Student student = new Student(name, gpa, distance, awards);
-		StudentList studentList = new StudentList();
-		studentList.add(student);
 		
 		
-		assertTrue(studentList.getList().contains(student));
-		assertEquals(studentList.getList().get(0).getName(), name);
-		assertEquals(studentList.getList().get(0).getGPA(), gpa, 0);
-		assertEquals(studentList.getList().get(0).getDistance(), distance);
-		assertEquals(studentList.getList().get(0).getAwards(), awards);
-	}
+	}*/
 }
