@@ -267,12 +267,10 @@ public class GUIMain extends JFrame {
 
 	    		schoolList.add(school);
 	    		
-	    		//new GUI for list of schools
-	    		new GUISchoolList(schoolList, this).setVisible(true);
 	    		schoolTextName.setText(null);
 	    		schoolTextGPA.setText(null);
 	    		schoolTextDistance.setText(null);
-	    		this.hide();
+	    		
 		    	
 	    		
 	    	}
@@ -317,12 +315,10 @@ public class GUIMain extends JFrame {
 	    		    		
 	    		studentList.add(student);
 
-	    		//new GUI for list of students
-	    		new GUIStudentList(studentList, this).setVisible(true);
 	    		studentTextName.setText(null);
 	    		studentTextGPA.setText(null);
 	    		studentTextDistance.setText(null);
-	    		this.hide();
+	    		
 	    		
 
 	    		
@@ -358,22 +354,26 @@ public class GUIMain extends JFrame {
 		
 		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
 			
-			Matching match = new Matching();
-			match.runMatch(schoolList.getList(), studentList.getList());
-					
+			//Matching match = new Matching();
+			//match.runMatch(schoolList.getList(), studentList.getList());
+			new GUIMatching(schoolList, studentList, this).setVisible(true);	
+			this.hide();
 		}
 		
 		private void viewSchoolsButtonActionPerformed(ActionEvent evt, SchoolList schoolList){
 			
-			Matching match = new Matching();
-			match.viewSchools(schoolList.getList());
+			//new GUI for list of schools
+    		new GUISchoolList(schoolList, this).setVisible(true);
+    		this.hide();
 					
 		}
 		
 		private void viewStudentsButtonActionPerformed(ActionEvent evt, StudentList studentList){
 			
-			Matching match = new Matching();
-			match.viewStudents(studentList.getList());
+
+    		//new GUI for list of students
+    		new GUIStudentList(studentList, this).setVisible(true);
+    		this.hide();
 					
 		}
 		
