@@ -368,26 +368,34 @@ public class GUIMain extends JFrame {
 		
 		public SchoolList readSchoolFile() throws IOException {
 			SchoolList schools = new SchoolList();
-			School school = new School();
 			BufferedReader sch = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Schools.txt"));
 		    try {
 		        String line = sch.readLine();
 		        int lineCount = 1;
+		        String name = null;
+		        double gpa = 0.0;
+		        int distance = 0;
+		        String award = null;
 
 		        while (line != null) {
 		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
-		            	school.setName(line);
+		            	name = line;
 		            }
 		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
-		            	school.setGPA(Double.parseDouble(line));
+		            	gpa = Double.parseDouble(line);
 		            }
 		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
-		            	school.setDistance(Integer.parseInt(line));
+		            	distance = Integer.parseInt(line);
 		            }
 		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
-		            	school.setAwards(line);
+		            	award = line;
 		            }
 		            else {
+		            	School school = new School();
+		            	school.setName(name);
+		            	school.setGPA(gpa);
+		            	school.setDistance(distance);
+		            	school.setAwards(award);
 		            	schools.add(school);
 		            }
 		            line = sch.readLine();
@@ -402,26 +410,34 @@ public class GUIMain extends JFrame {
 		
 		public StudentList readStudentFile() throws IOException {
 			StudentList students = new StudentList();
-			Student student = new Student();
 			BufferedReader st = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Students.txt"));
 		    try {
 		        String line = st.readLine();
 		        int lineCount = 1;
+		        String name = null;
+		        double gpa = 0.0;
+		        int distance = 0;
+		        String award = null;
 
 		        while (line != null) {
 		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
-		            	student.setName(line);
+		            	name = line;
 		            }
 		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
-		            	student.setGPA(Double.parseDouble(line));
+		            	gpa = Double.parseDouble(line);
 		            }
 		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
-		            	student.setDistance(Integer.parseInt(line));
+		            	distance = Integer.parseInt(line);
 		            }
 		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
-		            	student.setAwards(line);
+		            	award = line;
 		            }
 		            else {
+		            	Student student = new Student();
+		            	student.setName(name);
+		            	student.setGPA(gpa);
+		            	student.setDistance(distance);
+		            	student.setAwards(award);
 		            	students.add(student);
 		            }
 		            line = st.readLine();

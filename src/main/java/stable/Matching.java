@@ -37,10 +37,9 @@ public class Matching {
 		*/
 		
 		ArrayList<String> matches = new ArrayList<String>();
-		//matches.add("hello");
-		//matches.add("world");
 		
 		ListIterator<Student> iterStudent = students.listIterator();
+		
 		while (iterStudent.hasNext()) {
 			HashMap bestMatch = new HashMap();
 			Student student = iterStudent.next();
