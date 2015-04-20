@@ -1,0 +1,99 @@
+Bob Jones
+2.5
+40
+None
+
+John Doe
+3.5
+60
+Scholarship
+
+Emma Watson
+4.0
+100
+Honors Award
+
+Jane Smith
+3.0
+30
+Honors Award
+
+Taylor Swift
+3.5
+50
+Other
+
+Todd Miller
+2.0
+70
+None
+
+Bill Gates
+3.5
+50
+Other
+
+Christy Meyer
+4.0
+90
+Other
+
+Madeline Dean
+4.0
+30
+Honors Award
+
+Sonya Cortez
+3.0
+20
+Honors Award
+
+Alex Jacobs
+2.5
+80
+None
+
+Calvin Walker
+2.0
+50
+None
+
+Irene Lopez
+3.5
+60
+Honors Award
+
+Caleb Wade
+2.5
+30
+Honors Award
+
+Mike Griffin
+3.0
+60
+None
+
+Kenny French
+4.0
+80
+Scholarship
+
+Anne Peterson
+4.0
+70
+Honors Award
+
+Leon May
+4.0
+40
+Honors Award
+
+Brooke Hale
+2.5
+30
+None
+
+Tracy Morton
+3.0
+40
+None

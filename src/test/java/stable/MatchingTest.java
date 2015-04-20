@@ -2,6 +2,10 @@ package stable;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 import org.junit.Test;
@@ -91,8 +95,6 @@ public class MatchingTest {
 		assertEquals(expected.get(school), student2);
 		assertEquals(expected.get(school2), student);
 	}
-	
-	
 	
 	/*
 	@Test

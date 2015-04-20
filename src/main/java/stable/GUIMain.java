@@ -4,7 +4,12 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -58,8 +63,9 @@ public class GUIMain extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws IOException 
 	 */
-	public GUIMain() {
+	public GUIMain() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 300);
 		contentPane = new JPanel();
@@ -68,8 +74,8 @@ public class GUIMain extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		final SchoolList schoolList = new SchoolList();
-		final StudentList studentList = new StudentList();
+		final StudentList studentList = readStudentFile();
+		final SchoolList schoolList = readSchoolFile();
 		
 		/*format of columns:
 		 * column 1 & 2 is school information - label, text box
@@ -358,9 +364,76 @@ public class GUIMain extends JFrame {
 					
 				}
 			}
-			
-			
 	    }
+		
+		public SchoolList readSchoolFile() throws IOException {
+			SchoolList schools = new SchoolList();
+			School school = new School();
+			BufferedReader sch = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Schools.txt"));
+		    try {
+		        String line = sch.readLine();
+		        int lineCount = 1;
+
+		        while (line != null) {
+		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
+		            	school.setName(line);
+		            }
+		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
+		            	school.setGPA(Double.parseDouble(line));
+		            }
+		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
+		            	school.setDistance(Integer.parseInt(line));
+		            }
+		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
+		            	school.setAwards(line);
+		            }
+		            else {
+		            	schools.add(school);
+		            }
+		            line = sch.readLine();
+		            lineCount++;
+		        }
+		        
+		    } finally {
+		        sch.close();
+		    }
+		    return schools;
+		}
+		
+		public StudentList readStudentFile() throws IOException {
+			StudentList students = new StudentList();
+			Student student = new Student();
+			BufferedReader st = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Students.txt"));
+		    try {
+		        String line = st.readLine();
+		        int lineCount = 1;
+
+		        while (line != null) {
+		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
+		            	student.setName(line);
+		            }
+		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
+		            	student.setGPA(Double.parseDouble(line));
+		            }
+		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
+		            	student.setDistance(Integer.parseInt(line));
+		            }
+		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
+		            	student.setAwards(line);
+		            }
+		            else {
+		            	students.add(student);
+		            }
+		            line = st.readLine();
+		            lineCount++;
+		        }
+		        
+		    } finally {
+		        st.close();
+		    }
+		    
+		    return students;
+		}
 		
 		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
 						
