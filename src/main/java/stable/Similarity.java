@@ -44,15 +44,24 @@ public class Similarity extends JFrame {
 		setBounds(100, 100, 1000, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(0, 4));
+		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
 		
 		this.schools = schoolList.getList();
 		this.students = studentList.getList();
+				
+		btnBack = new JButton("Back to Main");
+		contentPane.add(btnBack);
+		
+		JLabel label1 = new JLabel("");
+		contentPane.add(label1); //fill a space
 		
 		JLabel lblEnterStudentInformation = new JLabel("Enter Student Information:");
 		lblEnterStudentInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblEnterStudentInformation);
+		
+		JLabel label2 = new JLabel("");
+		contentPane.add(label2); //fill a space
 		
 		studentTextGPA = new JTextField();
 		studentTextDistance = new JTextField();
@@ -74,13 +83,17 @@ public class Similarity extends JFrame {
 		studentAward.addItem("Other");
 		contentPane.add(studentAward);
 		
+		JLabel label3 = new JLabel("");
+		contentPane.add(label3); //fill a space
+		JLabel label4 = new JLabel("");
+		contentPane.add(label4); //fill a space
+		
 		btnFindStudents = new JButton("Find Similar Students");
 		btnFindSchools = new JButton("Find Possible Schools");
 		contentPane.add(btnFindStudents);
 		contentPane.add(btnFindSchools);
 		
-		btnBack = new JButton("Back to Main");
-		contentPane.add(btnBack);
+		
 		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

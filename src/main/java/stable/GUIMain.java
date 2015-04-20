@@ -238,6 +238,9 @@ public class GUIMain extends JFrame {
 		
 		
 		//column 1
+		JLabel label7 = new JLabel("");
+		contentPane.add(label7); //fill a space
+		
 		JButton btnMatch = new JButton("Match");
 		contentPane.add(btnMatch);
 		
