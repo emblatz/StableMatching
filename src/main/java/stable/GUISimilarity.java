@@ -23,7 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Similarity extends JFrame {
+public class GUISimilarity extends JFrame {
 	
 	List<School> schools;
 	List<Student> students;
@@ -38,7 +38,7 @@ public class Similarity extends JFrame {
 	private JButton btnFindStudents;
 	private JButton btnFindSchools;
 	
-	public Similarity(SchoolList schoolList, StudentList studentList, final GUIMain guiMain) {
+	public GUISimilarity(SchoolList schoolList, StudentList studentList, final GUIMain guiMain) {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 300);
@@ -183,7 +183,8 @@ public class Similarity extends JFrame {
 				studentDisplay.add(student);
 			}
 		}
-		new SimilarStudents(studentDisplay, this).setVisible(true);	
+		
+		new GUISimilarStudents(studentDisplay, this).setVisible(true);	
 		this.hide();
 	}
 	
@@ -195,11 +196,13 @@ public class Similarity extends JFrame {
 				schoolDisplay.add(school);
 			}
 		}
-		new SimilarSchools(schoolDisplay, this).setVisible(true);	
+		
+		new GUISimilarSchools(schoolDisplay, this).setVisible(true);	
 		this.hide();
 	}
 	
 	private void backButtonActionPerformed(ActionEvent evt, GUIMain guiMain) {
+		
 		guiMain.show();
 		this.hide();
 	}

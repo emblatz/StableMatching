@@ -30,7 +30,7 @@ import java.util.List;
 import javax.swing.Action;
 
 
-public class SimilarSchools extends JFrame {
+public class GUISimilarSchools extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnBack;
@@ -41,7 +41,7 @@ public class SimilarSchools extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SimilarSchools(List<School> schoolDisplay, final Similarity similarity) {
+	public GUISimilarSchools(List<School> schoolDisplay, final GUISimilarity similarity) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
@@ -71,7 +71,7 @@ public class SimilarSchools extends JFrame {
         });
 	}
 	
-	private void backButtonActionPerformed(ActionEvent evt, Similarity similarity) {
+	private void backButtonActionPerformed(ActionEvent evt, GUISimilarity similarity) {
 		
 		similarity.show();
 		this.hide();

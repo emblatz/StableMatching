@@ -363,14 +363,16 @@ public class GUIMain extends JFrame {
 	    }
 		
 		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
-			
-			
+						
+			//new GUI to see matches
 			new GUIMatching(schoolList, studentList, this).setVisible(true);	
 			this.hide();
 		}
 		
 		private void similarButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList) {
-			new Similarity(schoolList, studentList, this).setVisible(true);
+			
+			//new GUI for similarity search
+			new GUISimilarity(schoolList, studentList, this).setVisible(true);
 			this.hide();
 		}
 		
@@ -384,7 +386,6 @@ public class GUIMain extends JFrame {
 		
 		private void viewStudentsButtonActionPerformed(ActionEvent evt, StudentList studentList){
 			
-
     		//new GUI for list of students
     		new GUIStudentList(studentList, this).setVisible(true);
     		this.hide();
