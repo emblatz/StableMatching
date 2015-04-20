@@ -2,11 +2,13 @@ package stable;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.html.ListView;
 import javax.swing.JLabel;
@@ -22,11 +24,13 @@ import javax.swing.SwingConstants;
 import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.Action;
 
 
-public class GUIStudentList extends JFrame {
+public class SimilarStudents extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btnBack;
@@ -36,7 +40,7 @@ public class GUIStudentList extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIStudentList(StudentList studentList, final GUIMain guiMain) {
+	public SimilarStudents(List<Student> studentDisplay, final Similarity similarity) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 602, 443);
 		contentPane = new JPanel();
@@ -44,36 +48,34 @@ public class GUIStudentList extends JFrame {
 		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
 		
-		btnBack = new JButton("Back to Main");
+		btnBack = new JButton("Back to Finder");
 		contentPane.add(btnBack);
 		
+		String listData[] = new String[studentDisplay.size()];
 		
-		//view a list of students added
-		String listDataNames[] = new String[studentList.getList().size()];
-		Student listData[] = new Student[studentList.getList().size()];
-		
-		for(int i=0; i<listData.length; i++){
-			listDataNames[i] = studentList.getList().get(i).getName();
-			listData[i] = studentList.getList().get(i);
+		int i=0;
+		for(Student student:studentDisplay){
+			listData[i] = student.getName()+": "+student.getGPA()+", "+student.getAwards();
+			i++;
 		}
 		
-		jlist = new JList(listDataNames);
+		jlist = new JList(listData);
 		jlist.setBorder(new EmptyBorder(5,5,5,5));
 		contentPane.add(jlist);
 		
-		
 		btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonActionPerformed(evt,guiMain);
+                backButtonActionPerformed(evt, similarity);
             }
         });
 	}
 	
-	private void backButtonActionPerformed(ActionEvent evt, GUIMain guiMain) {
+	private void backButtonActionPerformed(ActionEvent evt, Similarity similarity) {
 		
-		guiMain.show();
+		similarity.show();
 		this.hide();
 		
 	}
+	
 	
 }

@@ -246,8 +246,15 @@ public class GUIMain extends JFrame {
                 matchButtonActionPerformed(evt, schoolList, studentList);
             }
         });
-				
 		
+		JButton btnSimilar = new JButton("Find Students and Schools");
+		contentPane.add(btnSimilar);
+				
+		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                similarButtonActionPerformed(evt, schoolList, studentList);
+            }
+        });
 	}
 		
 		
@@ -356,6 +363,11 @@ public class GUIMain extends JFrame {
 			
 			
 			new GUIMatching(schoolList, studentList, this).setVisible(true);	
+			this.hide();
+		}
+		
+		private void similarButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList) {
+			new Similarity(schoolList, studentList, this).setVisible(true);
 			this.hide();
 		}
 		
