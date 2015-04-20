@@ -36,7 +36,7 @@ public class StudentTest {
 	@Test(expected=RuntimeException.class)
 	public void testSetNameFail(){
 		Student student = new Student();
-		student.setName(null);
+		student.setName("");
 	}
 	
 	@Test
