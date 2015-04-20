@@ -61,7 +61,7 @@ public class SchoolTest {
 		assertEquals(school.getDistance(), 100);
 	}
 	
-	@Test
+	@Test(expected=IndexOutOfBoundsException.class)
 	public void testSetDistanceFail() {
 		School school = new School();
 		school.setDistance(1000);
