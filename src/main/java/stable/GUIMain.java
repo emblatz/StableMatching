@@ -207,7 +207,17 @@ public class GUIMain extends JFrame {
 		
 		btnViewSchools.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewSchoolsButtonActionPerformed(evt, schoolList);
+                try{
+            		viewSchoolsButtonActionPerformed(evt, schoolList);
+            	}
+                catch(Exception e){
+                	
+            		JOptionPane.showMessageDialog(error,
+		    			    "You need schools to view them!",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+				
+            }
             }
         });
 		
@@ -228,7 +238,17 @@ public class GUIMain extends JFrame {
 		
 		btnViewStudents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewStudentsButtonActionPerformed(evt, studentList);
+                try{
+                	viewStudentsButtonActionPerformed(evt, studentList);
+                }
+                catch(Exception e){
+                	
+                		JOptionPane.showMessageDialog(error,
+    		    			    "You need students to view them!",
+    		    			    "Entry error",
+    		    			    JOptionPane.ERROR_MESSAGE);
+    				
+                }
             }
         });
 		
@@ -264,7 +284,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(label7);
 		
 		//column 2
-		JTextField loadYourSchoolFile = new JTextField();
+		final JTextField loadYourSchoolFile = new JTextField("C:\\");
 		contentPane.add(loadYourSchoolFile); //fill a space
 		
 		//column 3
@@ -272,7 +292,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(label8);
 		
 		//column 4
-		JTextField loadYourStudentFile = new JTextField();
+		final JTextField loadYourStudentFile = new JTextField("C:\\");
 		contentPane.add(loadYourStudentFile); 
 		
 		//column 1
@@ -281,7 +301,8 @@ public class GUIMain extends JFrame {
 		
 		btnLoadSchoolFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
+                
+            	try {
 					loadSchoolFileActionPerformed(evt);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -297,7 +318,15 @@ public class GUIMain extends JFrame {
 		btnLoadYourSchoolFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                
-					loadYourSchoolFileActionPerformed(evt);
+            	try {
+					loadYourSchoolFileActionPerformed(evt, loadYourSchoolFile.getText());
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(error,
+		    			    "Incorrect file path",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+					e.printStackTrace();
+				}
 				
             }
 
@@ -310,7 +339,8 @@ public class GUIMain extends JFrame {
 		
 		btnLoadStudentFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
+            	
+            	try {
 					loadStudentFileActionPerformed(evt);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -326,7 +356,15 @@ public class GUIMain extends JFrame {
 		btnLoadYourStudentFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                
-					loadYourStudentFileActionPerformed(evt);
+					try {
+						loadYourStudentFileActionPerformed(evt, loadYourStudentFile.getText());
+					} catch (IOException e) {
+						JOptionPane.showMessageDialog(error,
+			    			    "Incorrect file path",
+			    			    "Entry error",
+			    			    JOptionPane.ERROR_MESSAGE);
+						e.printStackTrace();
+					}
 				
             }
         });
@@ -350,7 +388,17 @@ public class GUIMain extends JFrame {
 		
 		btnMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                matchButtonActionPerformed(evt, schoolList, studentList);
+                try{
+                	matchButtonActionPerformed(evt, schoolList, studentList);
+                }
+                catch(Exception e){
+                	
+            		JOptionPane.showMessageDialog(error,
+		    			    "You need students and schools to match them!",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+				
+            }
             }
         });
 		
@@ -359,16 +407,26 @@ public class GUIMain extends JFrame {
 				
 		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                similarButtonActionPerformed(evt, schoolList, studentList);
+                try{
+                	similarButtonActionPerformed(evt, schoolList, studentList);
+                }
+                catch(Exception e){
+                	
+            		JOptionPane.showMessageDialog(error,
+		    			    "You need students and schools to compare similarities!",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+				
+            }
             }
         });
 	}
 		
 		
 	//load files
-	public SchoolList readSchoolFile() throws IOException {
+	public SchoolList readSchoolFile(String file) throws IOException {
 		SchoolList schools = new SchoolList();
-		BufferedReader sch = new BufferedReader(new FileReader("Schools.txt"));
+		BufferedReader sch = new BufferedReader(new FileReader(file));
 	    try {
 	        String line = sch.readLine();
 	        int lineCount = 1;
@@ -408,9 +466,9 @@ public class GUIMain extends JFrame {
 	    return schools;
 	}
 	
-	public StudentList readStudentFile() throws IOException {
+	public StudentList readStudentFile(String file) throws IOException {
 		StudentList students = new StudentList();
-		BufferedReader st = new BufferedReader(new FileReader("Students.txt"));
+		BufferedReader st = new BufferedReader(new FileReader(file));
 	    try {
 	        String line = st.readLine();
 	        int lineCount = 1;
@@ -579,23 +637,29 @@ public class GUIMain extends JFrame {
 		
 		private void loadSchoolFileActionPerformed(ActionEvent evt) throws IOException {
 
-			schoolList = readSchoolFile();
+			String schoolFile = "Schools.txt";
+			schoolList = readSchoolFile(schoolFile);
 			JOptionPane.showMessageDialog(info, "Preset schools loaded!", "Schools", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 		private void loadStudentFileActionPerformed(ActionEvent evt) throws IOException {
 
-			studentList = readStudentFile();
+			String studentFile = "Students.txt";
+			studentList = readStudentFile(studentFile);
 			JOptionPane.showMessageDialog(info, "Preset students loaded!", "Students", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
-		private void loadYourSchoolFileActionPerformed(ActionEvent evt) {
-			// TODO Auto-generated method stub
+		private void loadYourSchoolFileActionPerformed(ActionEvent evt, String yourFile) throws IOException {
+			
+			schoolList = readSchoolFile(yourFile);
+			JOptionPane.showMessageDialog(info, "Your school file loaded!", "Schools", JOptionPane.INFORMATION_MESSAGE);
 			
 		}		
 		
-		private void loadYourStudentFileActionPerformed(ActionEvent evt) {
-			// TODO Auto-generated method stub
+		private void loadYourStudentFileActionPerformed(ActionEvent evt, String yourFile) throws IOException {
+			
+			studentList = readStudentFile(yourFile);
+			JOptionPane.showMessageDialog(info, "Your student file loaded!", "Schools", JOptionPane.INFORMATION_MESSAGE);
 			
 		}		
 		

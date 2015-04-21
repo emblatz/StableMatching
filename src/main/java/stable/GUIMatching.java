@@ -45,19 +45,21 @@ public class GUIMatching extends JFrame {
 	 */
 	public GUIMatching(SchoolList schoolList, StudentList studentList, final GUIMain guiMain) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 400);
+		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(0, 2));
 		setContentPane(contentPane);
-		
+
+//row 1
+		//column 1
 		btnBack = new JButton("Back to Main");
 		contentPane.add(btnBack);
 		
+		//column 2
 		Matching match = new Matching();
 		ArrayList<String> matches = match.runMatch(schoolList.getList(), studentList.getList());
-		
-		
+
 		JList list = new JList(matches.toArray());
 		contentPane.add(list);
 		
