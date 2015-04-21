@@ -29,7 +29,6 @@ import java.util.List;
 
 import javax.swing.Action;
 
-
 public class GUISimilarStudents extends JFrame {
 
 	private JPanel contentPane;

@@ -335,9 +335,6 @@ public class GUIMain extends JFrame {
 	    		studentTextGPA.setText(null);
 	    		studentTextDistance.setText(null);
 	    		
-	    		
-
-	    		
 	    	}
 			catch(IndexOutOfBoundsException i){ //checks for invalid numbers
 				if(Double.parseDouble(studentTextGPA.getText())>4 | Double.parseDouble(studentTextGPA.getText())<0|
