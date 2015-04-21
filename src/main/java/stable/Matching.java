@@ -5,28 +5,6 @@ import java.util.*;
 public class Matching {
 	
 	private HashMap matched = new HashMap();
-	/*
-	public void viewSchools(List <School> schools) {
-		//school s that exists in a list of schools will show up when viewSchools() is run
-		//school x that doesn't exist in a list of schools will not show up when viewSchools is run
-		for (School school:schools) {
-			System.out.println("School name: "+school.getName());
-			System.out.println("Preferred minimum GPA: "+school.getGPA());
-			System.out.println("Preferred living distance: "+school.getDistance());
-			System.out.println("Preferred award: "+school.getAwards()+"\n");
-		}
-	}
-	
-	public void viewStudents(List <Student> students) {
-		//student s that exists in a list of students will show up when viewStudents() is run
-		//student x that doesn't exist in a list of students will not show up when viewStudents is run
-		for (Student student:students) {
-			System.out.println("Student name: "+student.getName());
-			System.out.println("Student GPA: "+student.getGPA());
-			System.out.println("Preferred living distance: "+student.getDistance());
-			System.out.println("Student award: "+student.getAwards()+"\n");
-		}
-	}*/
 	
 	public ArrayList<String> runMatch(List<School> schools, List<Student> students) {
 		//for a school and a student who match according to Stable Matching algorithm, runMatch should pair them and display this pair

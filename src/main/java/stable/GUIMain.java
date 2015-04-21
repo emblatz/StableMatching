@@ -89,6 +89,7 @@ public class GUIMain extends JFrame {
 		 * column 3 & 4 is student information - label, text box
 		 */
 		
+//row 1		
 		//column 1
 		JLabel lblEnterSchoolInformation = new JLabel("Enter School Information:");
 		lblEnterSchoolInformation.setHorizontalAlignment(SwingConstants.CENTER);
@@ -118,7 +119,7 @@ public class GUIMain extends JFrame {
 		JLabel label2 = new JLabel("");
 		contentPane.add(label2); //fill a space
 		
-		
+//row 2		
 		//column 1
 		JLabel lblSchoolName = new JLabel("School Name:");
 		contentPane.add(lblSchoolName);
@@ -137,6 +138,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(studentTextName);
 		studentTextName.setColumns(10);
 		
+//row 3		
 		//column 1
 		JLabel lblMinGPA = new JLabel("Minimum GPA Requirement (0-4):");
 		contentPane.add(lblMinGPA);
@@ -155,6 +157,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(studentTextGPA);
 		studentTextGPA.setColumns(10);
 		
+//row 4		
 		//column 1
 		JLabel lblMaxDistance = new JLabel("Maximum Distance in miles (0-100):");
 		contentPane.add(lblMaxDistance);
@@ -173,6 +176,7 @@ public class GUIMain extends JFrame {
 		contentPane.add(studentTextDistance);
 		studentTextDistance.setColumns(10);
 		
+//row 5		
 		//column 1
 		JLabel lblSchoolAward = new JLabel("Select Your Preferred Award:");
 		contentPane.add(lblSchoolAward);
@@ -195,7 +199,8 @@ public class GUIMain extends JFrame {
 		studentAward.addItem("Honors Award");
 		studentAward.addItem("Other");
 		contentPane.add(studentAward);
-				
+		
+//row 6		
 		//column 1
 		JButton btnViewSchools = new JButton("View Schools");
 		contentPane.add(btnViewSchools);
@@ -237,13 +242,41 @@ public class GUIMain extends JFrame {
             }
         });
 		
-		
+//row 7	(empty row)
 		//column 1
 		JLabel label3 = new JLabel("");
 		contentPane.add(label3); //fill a space
+		//column 2
+		JLabel label4 = new JLabel("");
+		contentPane.add(label4); //fill a space
+		//column 3
+		JLabel label5 = new JLabel("");
+		contentPane.add(label5); //fill a space
+		//column 4
+		JLabel label6 = new JLabel("");
+		contentPane.add(label6); //fill a space
+
+		
+		
+//row 8
+		//column 1
+		JLabel label7 = new JLabel("Load Your School File:");
+		contentPane.add(label7);
 		
 		//column 2
-		JButton btnLoadSchoolFile = new JButton("Load Schools");
+		JTextField loadYourSchoolFile = new JTextField();
+		contentPane.add(loadYourSchoolFile); //fill a space
+		
+		//column 3
+		JLabel label8 = new JLabel("Load Your Student File:");
+		contentPane.add(label8);
+		
+		//column 4
+		JTextField loadYourStudentFile = new JTextField();
+		contentPane.add(loadYourStudentFile); 
+		
+		//column 1
+		JButton btnLoadSchoolFile = new JButton("Load Preset Schools");
 		contentPane.add(btnLoadSchoolFile);
 		
 		btnLoadSchoolFile.addActionListener(new java.awt.event.ActionListener() {
@@ -257,12 +290,22 @@ public class GUIMain extends JFrame {
             }			
         });
 		
-		//column 3
-		JLabel label4 = new JLabel("");
-		contentPane.add(label4); //fill a space		
+		//column 2
+		JButton btnLoadYourSchoolFile = new JButton("Load Your Schools");
+		contentPane.add(btnLoadYourSchoolFile);
+		
+		btnLoadYourSchoolFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               
+					loadYourSchoolFileActionPerformed(evt);
+				
+            }
 
-		//column 4
-		JButton btnLoadStudentFile = new JButton("Load Students");
+				
+        });
+		
+		//column 3
+		JButton btnLoadStudentFile = new JButton("Load Preset Students");
 		contentPane.add(btnLoadStudentFile);
 		
 		btnLoadStudentFile.addActionListener(new java.awt.event.ActionListener() {
@@ -276,21 +319,31 @@ public class GUIMain extends JFrame {
             }
         });
 		
+		//column 4
+		JButton btnLoadYourStudentFile = new JButton("Load Your Students");
+		contentPane.add(btnLoadYourStudentFile);
+		
+		btnLoadYourStudentFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               
+					loadYourStudentFileActionPerformed(evt);
+				
+            }
+        });
 		
 		//empty row
-		JLabel label5 = new JLabel("");
-		contentPane.add(label5); //fill a space
-		JLabel label6 = new JLabel("");
-		contentPane.add(label6); //fill a space
-		JLabel label7 = new JLabel("");
-		contentPane.add(label7); //fill a space
-		JLabel label8 = new JLabel("");
-		contentPane.add(label8); //fill a space
-		
-		
-		//column 1
 		JLabel label9 = new JLabel("");
 		contentPane.add(label9); //fill a space
+		JLabel label10 = new JLabel("");
+		contentPane.add(label10); //fill a space
+		JLabel label11 = new JLabel("");
+		contentPane.add(label11); //fill a space
+		JLabel label12 = new JLabel("");
+		contentPane.add(label12); //fill a space
+		
+		//column 1
+		JLabel label13 = new JLabel("");
+		contentPane.add(label13); //fill a space
 		
 		JButton btnMatch = new JButton("Match");
 		contentPane.add(btnMatch);
@@ -536,6 +589,16 @@ public class GUIMain extends JFrame {
 			JOptionPane.showMessageDialog(info, "Preset students loaded!", "Students", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
-
+		private void loadYourSchoolFileActionPerformed(ActionEvent evt) {
+			// TODO Auto-generated method stub
+			
+		}		
+		
+		private void loadYourStudentFileActionPerformed(ActionEvent evt) {
+			// TODO Auto-generated method stub
+			
+		}		
+		
+		
     
 }
