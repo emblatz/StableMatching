@@ -45,7 +45,7 @@ public class GUIMatching extends JFrame {
 	 */
 	public GUIMatching(SchoolList schoolList, StudentList studentList, final GUIMain guiMain) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 602, 443);
+		setBounds(100, 100, 1000, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(0, 2));

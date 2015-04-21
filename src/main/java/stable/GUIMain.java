@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -34,6 +35,7 @@ public class GUIMain extends JFrame {
 	private JRadioButton rdbtnSchool;
 	private JRadioButton rdbtnStudent;
 	private JFrame error;
+	private JFrame info;
 	
 	private JTextField schoolTextName;
 	private JTextField schoolTextGPA;
@@ -44,6 +46,10 @@ public class GUIMain extends JFrame {
 	private JTextField studentTextGPA;
 	private JTextField studentTextDistance;
 	private JComboBox studentAward;
+	
+
+	private StudentList studentList;
+	private SchoolList schoolList;
 
 	/**
 	 * Launch the application.
@@ -74,8 +80,9 @@ public class GUIMain extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		final StudentList studentList = readStudentFile();
-		final SchoolList schoolList = readSchoolFile();
+		//final StudentList studentList = readStudentFile();
+		//final SchoolList schoolList = readSchoolFile();
+		
 		
 		/*format of columns:
 		 * column 1 & 2 is school information - label, text box
@@ -231,21 +238,59 @@ public class GUIMain extends JFrame {
         });
 		
 		
-		
-		//empty row
+		//column 1
 		JLabel label3 = new JLabel("");
 		contentPane.add(label3); //fill a space
+		
+		//column 2
+		JButton btnLoadSchoolFile = new JButton("Load Schools");
+		contentPane.add(btnLoadSchoolFile);
+		
+		btnLoadSchoolFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+					loadSchoolFileActionPerformed(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }			
+        });
+		
+		//column 3
 		JLabel label4 = new JLabel("");
-		contentPane.add(label4); //fill a space
+		contentPane.add(label4); //fill a space		
+
+		//column 4
+		JButton btnLoadStudentFile = new JButton("Load Students");
+		contentPane.add(btnLoadStudentFile);
+		
+		btnLoadStudentFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try {
+					loadStudentFileActionPerformed(evt);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+		
+		
+		//empty row
 		JLabel label5 = new JLabel("");
 		contentPane.add(label5); //fill a space
 		JLabel label6 = new JLabel("");
 		contentPane.add(label6); //fill a space
+		JLabel label7 = new JLabel("");
+		contentPane.add(label7); //fill a space
+		JLabel label8 = new JLabel("");
+		contentPane.add(label8); //fill a space
 		
 		
 		//column 1
-		JLabel label7 = new JLabel("");
-		contentPane.add(label7); //fill a space
+		JLabel label9 = new JLabel("");
+		contentPane.add(label9); //fill a space
 		
 		JButton btnMatch = new JButton("Match");
 		contentPane.add(btnMatch);
@@ -267,7 +312,91 @@ public class GUIMain extends JFrame {
 	}
 		
 		
-		
+	//load files
+	public SchoolList readSchoolFile() throws IOException {
+		SchoolList schools = new SchoolList();
+		BufferedReader sch = new BufferedReader(new FileReader("Schools.txt"));
+	    try {
+	        String line = sch.readLine();
+	        int lineCount = 1;
+	        String name = null;
+	        double gpa = 0.0;
+	        int distance = 0;
+	        String award = null;
+
+	        while (line != null) {
+	            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
+	            	name = line;
+	            }
+	            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
+	            	gpa = Double.parseDouble(line);
+	            }
+	            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
+	            	distance = Integer.parseInt(line);
+	            }
+	            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
+	            	award = line;
+	            }
+	            else {
+	            	School school = new School();
+	            	school.setName(name);
+	            	school.setGPA(gpa);
+	            	school.setDistance(distance);
+	            	school.setAwards(award);
+	            	schools.add(school);
+	            }
+	            line = sch.readLine();
+	            lineCount++;
+	        }
+	        
+	    } finally {
+	        sch.close();
+	    }
+	    return schools;
+	}
+	
+	public StudentList readStudentFile() throws IOException {
+		StudentList students = new StudentList();
+		BufferedReader st = new BufferedReader(new FileReader("Students.txt"));
+	    try {
+	        String line = st.readLine();
+	        int lineCount = 1;
+	        String name = null;
+	        double gpa = 0.0;
+	        int distance = 0;
+	        String award = null;
+
+	        while (line != null) {
+	            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
+	            	name = line;
+	            }
+	            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
+	            	gpa = Double.parseDouble(line);
+	            }
+	            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
+	            	distance = Integer.parseInt(line);
+	            }
+	            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
+	            	award = line;
+	            }
+	            else {
+	            	Student student = new Student();
+	            	student.setName(name);
+	            	student.setGPA(gpa);
+	            	student.setDistance(distance);
+	            	student.setAwards(award);
+	            	students.add(student);
+	            }
+	            line = st.readLine();
+	            lineCount++;
+	        }
+	        
+	    } finally {
+	        st.close();
+	    }
+	    
+	    return students;
+	}
 		
 		
 	//button actions
@@ -363,90 +492,7 @@ public class GUIMain extends JFrame {
 			}
 	    }
 		
-		public SchoolList readSchoolFile() throws IOException {
-			SchoolList schools = new SchoolList();
-			BufferedReader sch = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Schools.txt"));
-		    try {
-		        String line = sch.readLine();
-		        int lineCount = 1;
-		        String name = null;
-		        double gpa = 0.0;
-		        int distance = 0;
-		        String award = null;
-
-		        while (line != null) {
-		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
-		            	name = line;
-		            }
-		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
-		            	gpa = Double.parseDouble(line);
-		            }
-		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
-		            	distance = Integer.parseInt(line);
-		            }
-		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
-		            	award = line;
-		            }
-		            else {
-		            	School school = new School();
-		            	school.setName(name);
-		            	school.setGPA(gpa);
-		            	school.setDistance(distance);
-		            	school.setAwards(award);
-		            	schools.add(school);
-		            }
-		            line = sch.readLine();
-		            lineCount++;
-		        }
-		        
-		    } finally {
-		        sch.close();
-		    }
-		    return schools;
-		}
 		
-		public StudentList readStudentFile() throws IOException {
-			StudentList students = new StudentList();
-			BufferedReader st = new BufferedReader(new FileReader("C:\\Users\\Emily\\Documents\\GitHub\\StableMatching\\src\\main\\java\\stable\\Students.txt"));
-		    try {
-		        String line = st.readLine();
-		        int lineCount = 1;
-		        String name = null;
-		        double gpa = 0.0;
-		        int distance = 0;
-		        String award = null;
-
-		        while (line != null) {
-		            if ((lineCount%10 == 1) || (lineCount%10 == 6)) {
-		            	name = line;
-		            }
-		            else if ((lineCount%10 == 2) || (lineCount%10 == 7)) {
-		            	gpa = Double.parseDouble(line);
-		            }
-		            else if ((lineCount%10 == 3) || (lineCount%10 == 8)) {
-		            	distance = Integer.parseInt(line);
-		            }
-		            else if ((lineCount%10 == 4) || (lineCount%10 == 9)) {
-		            	award = line;
-		            }
-		            else {
-		            	Student student = new Student();
-		            	student.setName(name);
-		            	student.setGPA(gpa);
-		            	student.setDistance(distance);
-		            	student.setAwards(award);
-		            	students.add(student);
-		            }
-		            line = st.readLine();
-		            lineCount++;
-		        }
-		        
-		    } finally {
-		        st.close();
-		    }
-		    
-		    return students;
-		}
 		
 		private void matchButtonActionPerformed(ActionEvent evt, SchoolList schoolList, StudentList studentList){
 						
@@ -476,6 +522,18 @@ public class GUIMain extends JFrame {
     		new GUIStudentList(studentList, this).setVisible(true);
     		this.hide();
 					
+		}
+		
+		private void loadSchoolFileActionPerformed(ActionEvent evt) throws IOException {
+
+			schoolList = readSchoolFile();
+			JOptionPane.showMessageDialog(info, "Preset schools loaded!", "Schools", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		private void loadStudentFileActionPerformed(ActionEvent evt) throws IOException {
+
+			studentList = readStudentFile();
+			JOptionPane.showMessageDialog(info, "Preset students loaded!", "Students", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 
