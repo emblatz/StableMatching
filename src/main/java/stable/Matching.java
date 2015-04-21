@@ -57,7 +57,7 @@ public class Matching {
 				}
 				bestMatch.put(match, school);
 				if (!matched.containsKey(school)) {
-					if (school.getGPA()<=student.getGPA() && school.getDistance()>=student.getDistance()) {
+					if (school.getGPA()<=student.getGPA() && student.getGPA()<=(school.getGPA()+0.5) && school.getDistance()>=student.getDistance()) {
 						matched.put(school, student);
 						System.out.println("Student "+student.getName()+" matched to "+school.getName());
 						matches.add("Student "+student.getName()+" matched to "+school.getName());
@@ -75,6 +75,9 @@ public class Matching {
 					}
 					if (school.getAwards()==oldStudent.getAwards()) {
 						oldCount++;
+					}
+					if (student.getGPA()>oldStudent.getGPA() && student.getGPA()<=(school.getGPA()+0.5)) {
+						newCount++;
 					}
 					if (oldCount < newCount) {
 						matched.remove(school);
