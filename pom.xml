@@ -50,9 +50,6 @@
 		     <include>**/*IT.java</include>
 		     <include>**/IT*.java</include>
 		  </includes>
-		  <excludes>
-		  	<exclde>**/GUI*.java</exclde>
-		  </excludes>
           	</configuration>
               </execution>
             </executions>
