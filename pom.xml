@@ -30,7 +30,6 @@
 	        <version>2.18</version>
 	        <configuration>
 	          <excludes>
-	          	<exclude>**/GUI*.java</exclude>
 	            <exclude>**/*IT.java</exclude>
 	            <exclude>**/IT*.java</exclude>
 	          </excludes>
