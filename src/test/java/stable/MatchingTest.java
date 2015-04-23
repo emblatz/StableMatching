@@ -92,8 +92,11 @@ public class MatchingTest {
 		matching.runMatch(schools, students);
 		expected = matching.getMap();
 		
-		assertEquals(expected.get(school), student2);
-		assertEquals(expected.get(school2), student);
+		Student expStudent1 = (Student) expected.get(school);
+		Student expStudent2 = (Student) expected.get(school2);
+		
+		assertEquals(expStudent1.getName(), student2.getName());
+		assertEquals(expStudent2.getName(), student.getName());
 	}
 	
 	/*
