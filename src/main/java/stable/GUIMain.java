@@ -228,7 +228,7 @@ public class GUIMain extends JFrame {
 		
 		btnEnterSchool.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonSchoolActionPerformed(evt, schoolList);
+                enterButtonSchoolActionPerformed(evt);
             }
         });
 		
@@ -258,7 +258,7 @@ public class GUIMain extends JFrame {
 		
 		btnEnterStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButtonStudentActionPerformed(evt, studentList);
+                enterButtonStudentActionPerformed(evt);
             }
         });
 		
@@ -389,7 +389,9 @@ public class GUIMain extends JFrame {
 		btnMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try{
-                	matchButtonActionPerformed(evt, schoolList, studentList);
+                	SchoolList schools = schoolList;
+                	StudentList students = studentList;
+                	matchButtonActionPerformed(evt, schools, students);
                 }
                 catch(Exception e){
                 	
@@ -408,7 +410,9 @@ public class GUIMain extends JFrame {
 		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try{
-                	similarButtonActionPerformed(evt, schoolList, studentList);
+                	SchoolList schools = schoolList;
+                	StudentList students = studentList;
+                	similarButtonActionPerformed(evt, schools, students);
                 }
                 catch(Exception e){
                 	
@@ -512,7 +516,7 @@ public class GUIMain extends JFrame {
 		
 	//button actions
 	
-		private void enterButtonSchoolActionPerformed(ActionEvent evt, SchoolList schoolList) {
+		private void enterButtonSchoolActionPerformed(ActionEvent evt) {
 	    	try {
 	    		
 	    		School school = new School();
@@ -560,7 +564,7 @@ public class GUIMain extends JFrame {
 	    	
 	    }
 		
-		private void enterButtonStudentActionPerformed(ActionEvent evt, StudentList studentList) {
+		private void enterButtonStudentActionPerformed(ActionEvent evt) {
 			try {
 				
 	    		Student student = new Student();
