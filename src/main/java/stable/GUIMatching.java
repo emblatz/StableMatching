@@ -6,6 +6,9 @@ import java.awt.FlowLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -24,6 +27,8 @@ import javax.swing.SwingConstants;
 import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -39,6 +44,7 @@ public class GUIMatching extends JFrame {
 	private JButton btnBack;
 	private JList jlist;
 	private JFrame error;
+	private JFrame info;
 
 	/**
 	 * Create the frame.
@@ -46,6 +52,34 @@ public class GUIMatching extends JFrame {
 	public GUIMatching(SchoolList schoolList, StudentList studentList, final GUIMain guiMain) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
+		
+		//menu bar
+		JMenuBar menuBar = new JMenuBar();
+		JMenu help = new JMenu("Help");
+		help.setMnemonic(KeyEvent.VK_H); //alt + h
+		JMenuItem about = new JMenuItem("About");
+		about.setMnemonic(KeyEvent.VK_A); //alt + a
+		
+		about.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		    	
+		    	JOptionPane.showMessageDialog(info,
+		    			"Software Testing, Dr. Guo - Stable Matching Project - Spring 2015"
+		    			+ "\nWritten by Emily Blatz and Nowele Rechka"
+				    	+ "\n\nThis is a small program to "
+		    			+ "compare and match schools and students "
+		    			+ "using the Stable Matching algorithm."
+		    			,"About Stable Matcher",
+	    			    JOptionPane.PLAIN_MESSAGE);
+				
+		    }
+		});
+		
+		help.add(about);
+		menuBar.add(help);
+		setJMenuBar(menuBar);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(0, 2));

@@ -3,7 +3,10 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,11 +22,15 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Popup;
 import javax.swing.SwingConstants;
 
 
@@ -31,9 +38,6 @@ public class GUIMain extends JFrame {
 
 	private JPanel contentPane;
 	
-	private ButtonGroup accountButtons;
-	private JRadioButton rdbtnSchool;
-	private JRadioButton rdbtnStudent;
 	private JFrame error;
 	private JFrame info;
 	
@@ -73,20 +77,64 @@ public class GUIMain extends JFrame {
 	 */
 	public GUIMain() throws IOException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 300);
+		setBounds(100, 100, 1300, 400);
+		
+		//menu bar
+		JMenuBar menuBar = new JMenuBar();
+		JMenu help = new JMenu("Help");
+		help.setMnemonic(KeyEvent.VK_H); //alt + h
+		JMenuItem about = new JMenuItem("About");
+		about.setMnemonic(KeyEvent.VK_A); //alt + a
+		JMenuItem howToUse = new JMenuItem("How to Use");
+		howToUse.setMnemonic(KeyEvent.VK_U); //alt + u
+		
+		about.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		    	
+		    	JOptionPane.showMessageDialog(info,
+		    			"Software Testing, Dr. Guo - Stable Matching Project - Spring 2015"
+		    			+ "\nWritten by Emily Blatz and Nowele Rechka"
+				    	+ "\n\nThis is a small program to "
+		    			+ "compare and match schools and students "
+		    			+ "using the Stable Matching algorithm."
+		    			,"About Stable Matcher",
+	    			    JOptionPane.PLAIN_MESSAGE);
+				
+		    }
+		});
+		
+		howToUse.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		    	
+		    	JOptionPane.showMessageDialog(info,
+		    			"1. Add individual schools or students with the 'Enter [] Information' buttons:"
+		    				+ "\n	Enter the credentials into the text fields and select an award, then press the corresponding button."
+		    			+ "\n2. Load a preset file of schools or students with the 'Load Preset []' buttons"
+		    			+ "\n3. Load your own file of schools or students with the 'Load Your []' buttons:"
+		    				+ "\n	Enter your path to the file in the text field, then press the corresponding button."
+		    			+ "\n4. You can view a list of schools or students with the 'View []' buttons"
+		    			+ "\n5. You can check for similiarities between school requirements and student records with the 'Find Students and Schools' button"
+		    			+ "\n6. You can run a stable match of all the schools and students with the 'Match' button"
+		    			,"How to Use Stable Matcher",
+	    			    JOptionPane.PLAIN_MESSAGE);
+				
+		    }
+		});
+		
+		help.add(about);
+		help.add(howToUse);
+		menuBar.add(help);
+		setJMenuBar(menuBar);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new GridLayout(0, 4));
+		contentPane.setLayout(new GridLayout(0, 5));
 		setContentPane(contentPane);
-		
-		
-		//final StudentList studentList = readStudentFile();
-		//final SchoolList schoolList = readSchoolFile();
-		
 		
 		/*format of columns:
 		 * column 1 & 2 is school information - label, text box
-		 * column 3 & 4 is student information - label, text box
+		 * column 3 is empty or for joint buttons
+		 * column 4 & 5 is student information - label, text box
 		 */
 		
 //row 1		
@@ -106,6 +154,10 @@ public class GUIMain extends JFrame {
 		contentPane.add(label1); //fill a space
 		
 		//column 3
+		JLabel label2 = new JLabel("");
+		contentPane.add(label2); //fill a space
+		
+		//column 4
 		JLabel lblEnterStudentInformation = new JLabel("Enter Student Information:");
 		lblEnterStudentInformation.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		contentPane.add(lblEnterStudentInformation);
@@ -115,9 +167,9 @@ public class GUIMain extends JFrame {
 		studentTextDistance = new JTextField();
 		studentAward = new JComboBox();
 		
-		//column 4
-		JLabel label2 = new JLabel("");
-		contentPane.add(label2); //fill a space
+		//column 5
+		JLabel label3 = new JLabel("");
+		contentPane.add(label3); //fill a space
 		
 //row 2		
 		//column 1
@@ -130,10 +182,14 @@ public class GUIMain extends JFrame {
 		schoolTextName.setColumns(10);
 		
 		//column 3
+		JLabel label4 = new JLabel("");
+		contentPane.add(label4); //fill a space
+		
+		//column 4
 		JLabel lblStudentLabel = new JLabel("Student Name:");
 		contentPane.add(lblStudentLabel);
 		
-		//column 4
+		//column 5
 		studentTextName.setNextFocusableComponent(studentTextGPA);
 		contentPane.add(studentTextName);
 		studentTextName.setColumns(10);
@@ -147,15 +203,20 @@ public class GUIMain extends JFrame {
 		schoolTextGPA.setNextFocusableComponent(schoolTextDistance);
 		contentPane.add(schoolTextGPA);
 		schoolTextGPA.setColumns(10);
-		
+
 		//column 3
+		JLabel label5 = new JLabel("");
+		contentPane.add(label5); //fill a space
+		
+		//column 4
 		JLabel lblStudentGPA = new JLabel("Student GPA (0-4):");
 		contentPane.add(lblStudentGPA);
 		
-		//column 4
+		//column 5
 		studentTextGPA.setNextFocusableComponent(studentTextDistance);
 		contentPane.add(studentTextGPA);
 		studentTextGPA.setColumns(10);
+		
 		
 //row 4		
 		//column 1
@@ -168,13 +229,19 @@ public class GUIMain extends JFrame {
 		schoolTextDistance.setColumns(10);
 		
 		//column 3
+		JLabel label6 = new JLabel("");
+		contentPane.add(label6); //fill a space
+		
+		//column 4
 		JLabel lblLocation = new JLabel("Preferred Distance in miles (0-100):");
 		contentPane.add(lblLocation);
 		
-		//column 4
+		//column 5
 		studentTextDistance.setNextFocusableComponent(studentAward);
 		contentPane.add(studentTextDistance);
 		studentTextDistance.setColumns(10);
+		
+
 		
 //row 5		
 		//column 1
@@ -190,15 +257,20 @@ public class GUIMain extends JFrame {
 		contentPane.add(schoolAward);
 		
 		//column 3
+		JLabel label7 = new JLabel("");
+		contentPane.add(label7); //fill a space
+		
+		//column 4
 		JLabel lblStudentAward = new JLabel("Select Your Award:");
 		contentPane.add(lblStudentAward);
 		
-		//column 4
+		//column 5
 		studentAward.addItem("None");
 		studentAward.addItem("Scholarship");
 		studentAward.addItem("Honors Award");
 		studentAward.addItem("Other");
 		contentPane.add(studentAward);
+		
 		
 //row 6		
 		//column 1
@@ -233,6 +305,10 @@ public class GUIMain extends JFrame {
         });
 		
 		//column 3
+		JLabel label8 = new JLabel("");
+		contentPane.add(label8); //fill a space
+		
+		//column 4
 		JButton btnViewStudents = new JButton("View Students");
 		contentPane.add(btnViewStudents);
 		
@@ -252,7 +328,7 @@ public class GUIMain extends JFrame {
             }
         });
 		
-		//column 4
+		//column 5
 		JButton btnEnterStudent = new JButton("Enter Student Information");
 		contentPane.add(btnEnterStudent);
 		
@@ -264,37 +340,44 @@ public class GUIMain extends JFrame {
 		
 //row 7	(empty row)
 		//column 1
-		JLabel label3 = new JLabel("");
-		contentPane.add(label3); //fill a space
+		JLabel label9 = new JLabel("");
+		contentPane.add(label9); //fill a space
 		//column 2
-		JLabel label4 = new JLabel("");
-		contentPane.add(label4); //fill a space
+		JLabel label10 = new JLabel("");
+		contentPane.add(label10); //fill a space
 		//column 3
-		JLabel label5 = new JLabel("");
-		contentPane.add(label5); //fill a space
+		JLabel label11 = new JLabel("");
+		contentPane.add(label11); //fill a space
 		//column 4
-		JLabel label6 = new JLabel("");
-		contentPane.add(label6); //fill a space
-
+		JLabel label12 = new JLabel("");
+		contentPane.add(label12); //fill a space
+		//column 4
+		JLabel label13 = new JLabel("");
+		contentPane.add(label13); //fill a space
 		
 		
 //row 8
 		//column 1
-		JLabel label7 = new JLabel("Load Your School File:");
-		contentPane.add(label7);
+		JLabel lblLoadYourSchoolFile = new JLabel("Load Your School File:");
+		contentPane.add(lblLoadYourSchoolFile);
 		
 		//column 2
 		final JTextField loadYourSchoolFile = new JTextField("C:\\");
 		contentPane.add(loadYourSchoolFile); //fill a space
 		
 		//column 3
-		JLabel label8 = new JLabel("Load Your Student File:");
-		contentPane.add(label8);
+		JLabel label14 = new JLabel("");
+		contentPane.add(label14); //fill a space
 		
 		//column 4
+		JLabel lblLoadYourStudentFile = new JLabel("Load Your Student File:");
+		contentPane.add(lblLoadYourStudentFile);
+		
+		//column 5
 		final JTextField loadYourStudentFile = new JTextField("C:\\");
 		contentPane.add(loadYourStudentFile); 
 		
+//row 9
 		//column 1
 		JButton btnLoadSchoolFile = new JButton("Load Preset Schools");
 		contentPane.add(btnLoadSchoolFile);
@@ -334,6 +417,10 @@ public class GUIMain extends JFrame {
         });
 		
 		//column 3
+		JLabel label15 = new JLabel("");
+		contentPane.add(label15); //fill a space
+		
+		//column 4
 		JButton btnLoadStudentFile = new JButton("Load Preset Students");
 		contentPane.add(btnLoadStudentFile);
 		
@@ -349,7 +436,7 @@ public class GUIMain extends JFrame {
             }
         });
 		
-		//column 4
+		//column 5
 		JButton btnLoadYourStudentFile = new JButton("Load Your Students");
 		contentPane.add(btnLoadYourStudentFile);
 		
@@ -369,20 +456,68 @@ public class GUIMain extends JFrame {
             }
         });
 		
-		//empty row
-		JLabel label9 = new JLabel("");
-		contentPane.add(label9); //fill a space
-		JLabel label10 = new JLabel("");
-		contentPane.add(label10); //fill a space
-		JLabel label11 = new JLabel("");
-		contentPane.add(label11); //fill a space
-		JLabel label12 = new JLabel("");
-		contentPane.add(label12); //fill a space
+//row 10 (empty row)
+		//column 1
+		JLabel label16 = new JLabel("");
+		contentPane.add(label16); //fill a space
+		//column 2
+		JLabel label17 = new JLabel("");
+		contentPane.add(label17); //fill a space
+		//column 3
+		JLabel label18 = new JLabel("");
+		contentPane.add(label18); //fill a space
+		//column 4
+		JLabel label19 = new JLabel("");
+		contentPane.add(label19); //fill a space
+		//column 5
+		JLabel label20 = new JLabel("");
+		contentPane.add(label20); //fill a space
+		
+//row 11
 		
 		//column 1
-		JLabel label13 = new JLabel("");
-		contentPane.add(label13); //fill a space
+		JLabel label21 = new JLabel("");
+		contentPane.add(label21); //fill a space
+		//column 2
+		JLabel label22 = new JLabel("");
+		contentPane.add(label22); //fill a space
 		
+		//column 3
+		JButton btnSimilar = new JButton("Find Students and Schools");
+		contentPane.add(btnSimilar);
+				
+		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                try{
+                	similarButtonActionPerformed(evt, schoolList, studentList);
+                }
+                catch(Exception e){
+                	
+            		JOptionPane.showMessageDialog(error,
+		    			    "You need students and schools to compare similarities!",
+		    			    "Entry error",
+		    			    JOptionPane.ERROR_MESSAGE);
+				
+            }
+            }
+        });
+		
+		//column 4
+		JLabel label23 = new JLabel("");
+		contentPane.add(label23); //fill a space
+		//column 5
+		JLabel label24 = new JLabel("");
+		contentPane.add(label24); //fill a space
+
+//row 11
+		//column 1
+		JLabel label25 = new JLabel("");
+		contentPane.add(label25); //fill a space
+		//column 2
+		JLabel label26 = new JLabel("");
+		contentPane.add(label26); //fill a space
+		
+		//column 3
 		JButton btnMatch = new JButton("Match");
 		contentPane.add(btnMatch);
 		
@@ -402,27 +537,23 @@ public class GUIMain extends JFrame {
             }
         });
 		
-		JButton btnSimilar = new JButton("Find Students and Schools");
-		contentPane.add(btnSimilar);
+		//column 4
+		JLabel label27 = new JLabel("");
+		contentPane.add(label27); //fill a space
+		//column 5
+		JLabel label28 = new JLabel("");
+		contentPane.add(label28); //fill a space
+
 				
-		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try{
-                	similarButtonActionPerformed(evt, schoolList, studentList);
-                }
-                catch(Exception e){
-                	
-            		JOptionPane.showMessageDialog(error,
-		    			    "You need students and schools to compare similarities!",
-		    			    "Entry error",
-		    			    JOptionPane.ERROR_MESSAGE);
-				
-            }
-            }
-        });
+		
+		
+		
 	}
 		
-		
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
 	//load files
 	public SchoolList readSchoolFile(String file) throws IOException {
 		SchoolList schools = new SchoolList();

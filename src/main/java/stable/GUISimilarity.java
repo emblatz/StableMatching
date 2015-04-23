@@ -7,6 +7,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
 
 import javax.swing.JFrame;
@@ -16,6 +18,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -30,6 +35,7 @@ public class GUISimilarity extends JFrame {
 	
 	private JPanel contentPane;
 	private JFrame error;
+	private JFrame info;
 	
 	private JTextField studentTextGPA;
 	private JTextField studentTextDistance;
@@ -42,6 +48,51 @@ public class GUISimilarity extends JFrame {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 300);
+		
+		//menu bar
+		JMenuBar menuBar = new JMenuBar();
+		JMenu help = new JMenu("Help");
+		help.setMnemonic(KeyEvent.VK_H); //alt + h
+		JMenuItem about = new JMenuItem("About");
+		about.setMnemonic(KeyEvent.VK_A); //alt + a
+		JMenuItem howToUse = new JMenuItem("How to Use");
+		howToUse.setMnemonic(KeyEvent.VK_U); //alt + u
+		
+		about.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		    	
+		    	JOptionPane.showMessageDialog(info,
+		    			"Software Testing, Dr. Guo - Stable Matching Project - Spring 2015"
+		    			+ "\nWritten by Emily Blatz and Nowele Rechka"
+				    	+ "\n\nThis is a small program to "
+		    			+ "compare and match schools and students "
+		    			+ "using the Stable Matching algorithm."
+		    			,"About Stable Matcher",
+	    			    JOptionPane.PLAIN_MESSAGE);
+				
+		    }
+		});
+		
+		howToUse.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent event) {
+		    	
+		    	JOptionPane.showMessageDialog(info,
+		    				"To see your student's competition and potential school matches:"
+		    			+ "\n1. Enter your student's credentials or your student's target credentials"
+		    			+ "\n2. View students with similar credentials with the 'Find Similar Students' button"
+		    			+ "\n3. View schools looking for credentials like your student's with the 'Find Possible Schools' button"
+		    			,"How to Use Similarity Search",
+	    			    JOptionPane.PLAIN_MESSAGE);
+				
+		    }
+		});
+		
+		help.add(about);
+		help.add(howToUse);
+		menuBar.add(help);
+		setJMenuBar(menuBar);
+				
+				
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new GridLayout(0, 2));
