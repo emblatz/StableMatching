@@ -489,13 +489,15 @@ public class GUIMain extends JFrame {
 		btnSimilar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try{
-<<<<<<< HEAD
+
                 	similarButtonActionPerformed(evt, schoolList, studentList);
-=======
+                	
+                	/*
                 	SchoolList schools = schoolList;
                 	StudentList students = studentList;
                 	matchButtonActionPerformed(evt, schools, students);
->>>>>>> origin/master
+ 					*/
+                	
                 }
                 catch(Exception e){
                 	
@@ -530,13 +532,14 @@ public class GUIMain extends JFrame {
 		btnMatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try{
-<<<<<<< HEAD
+
                 	matchButtonActionPerformed(evt, schoolList, studentList);
-=======
+                	/*
                 	SchoolList schools = schoolList;
                 	StudentList students = studentList;
                 	similarButtonActionPerformed(evt, schools, students);
->>>>>>> origin/master
+                	*/
+
                 }
                 catch(Exception e){
                 	
