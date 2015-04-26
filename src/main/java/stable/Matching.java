@@ -19,24 +19,20 @@ public class Matching {
 		ListIterator<Student> iterStudent = students.listIterator();
 		
 		while (iterStudent.hasNext()) {
-			HashMap bestMatch = new HashMap();
 			Student student = iterStudent.next();
 			System.out.println(student.getName());
+			
 			for (School school:schools) {
-				int match=0;
-				if(school.getDistance()>=student.getDistance()) {
-					match++;
-				}
-				if (school.getAwards()==student.getAwards()) {
-					match++;
-				}
-				if (school.getGPA()<=student.getGPA()) {
-					match++;
-				}
-				bestMatch.put(match, school);
-				if (!matched.containsKey(school)) {
-					if (school.getGPA()<=student.getGPA() && school.getDistance()>=student.getDistance()) {
-						matched.put(school, student);
+				List<Student> accepted = new ArrayList<Student>();
+				if (matched.containsKey(school))
+					accepted = (List<Student>) matched.get(school);
+				if (!matched.containsKey(school) || accepted.size()<3) {
+					if (school.getGPA()<=student.getGPA() && student.getGPA() <= (school.getGPA()+.5) 
+							&& school.getDistance()>=student.getDistance()) {
+						accepted.add(student);
+						if (matched.containsKey(school))
+							matched.remove(school);
+						matched.put(school, accepted);
 						System.out.println("Student "+student.getName()+" matched to "+school.getName());
 						matches.add("Student "+student.getName()+" matched to "+school.getName());
 						iterStudent.remove();
@@ -45,27 +41,31 @@ public class Matching {
 
 				}
 				else {
-					int newCount = 0;
-					int oldCount = 0;
-					Student oldStudent = (Student) matched.get(school);
-					if (school.getAwards()==student.getAwards()) {
-						newCount++;
-					}
-					if (school.getAwards()==oldStudent.getAwards()) {
-						oldCount++;
-					}
-					if (student.getGPA()>oldStudent.getGPA()) {
-						newCount++;
-					}
-					if (oldCount < newCount) {
-						matched.remove(school);
-						matched.put(school, student);
-						System.out.println("New student "+student.getName()+" beat "+oldStudent.getName()+" at "+school.getName());
-						matches.add("New student "+student.getName()+" beat "+oldStudent.getName()+" at "+school.getName());
-						iterStudent.remove();
-						iterStudent.add(oldStudent);
-						iterStudent.previous();
-						break;
+					accepted = (List<Student>)matched.get(school);
+					ListIterator<Student> iterAcc = accepted.listIterator();
+					while(iterAcc.hasNext()) {
+						int newCount = 0;
+						int oldCount = 0;
+						Student oldStudent = iterAcc.next();
+						if (school.getAwards()==student.getAwards()) {
+							newCount++;
+						}
+						if (school.getAwards()==oldStudent.getAwards()) {
+							oldCount++;
+						}
+						if (student.getGPA()>oldStudent.getGPA()) {
+							newCount++;
+						}
+						if (oldCount < newCount) {
+							matched.remove(school);
+							iterAcc.remove();
+							iterAcc.add(student);
+							iterAcc.previous();
+							matched.put(school, accepted);
+							System.out.println("New student "+student.getName()+" beat "+oldStudent.getName()+" at "+school.getName());
+							matches.add("New student "+student.getName()+" beat "+oldStudent.getName()+" at "+school.getName());
+							break;
+						}
 					}
 				}
 			}

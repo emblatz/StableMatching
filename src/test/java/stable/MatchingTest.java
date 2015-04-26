@@ -68,16 +68,16 @@ public class MatchingTest {
 		school.setAwards("Scholarship");
 		schools.add(school);
 		
-		Student student = new Student();
-		student.setName("John Smith");
-		student.setGPA(3.5);
-		student.setDistance(50);
-		student.setAwards("Honors Award");
-		students.add(student);
+		Student student1 = new Student();
+		student1.setName("John Smith");
+		student1.setGPA(3.5);
+		student1.setDistance(50);
+		student1.setAwards("Honors Award");
+		students.add(student1);
 		
 		Student student2 = new Student();
 		student2.setName("Bob Jones");
-		student2.setGPA(4.0);
+		student2.setGPA(2.5);
 		student2.setDistance(100);
 		student2.setAwards("Scholarship");
 		students.add(student2);
@@ -92,11 +92,16 @@ public class MatchingTest {
 		matching.runMatch(schools, students);
 		expected = matching.getMap();
 		
-		Student expStudent1 = (Student) expected.get(school);
-		Student expStudent2 = (Student) expected.get(school2);
+		List<Student> expStudent1 = (List<Student>) expected.get(school);
+		List<Student> expStudent2 = (List<Student>) expected.get(school2);
 		
-		assertEquals(expStudent1.getName(), student2.getName());
-		assertEquals(expStudent2.getName(), student.getName());
+		for (Student student:expStudent1) {
+			assertEquals(student2.getName(), student.getName());
+		}
+		
+		for (Student student:expStudent2) {
+			assertEquals(student1.getName(), student.getName());
+		}
 	}
 	
 	/*
